@@ -1,12 +1,16 @@
 {
   "name": "slackclone",
   "version": "1.0.0",
-<<<<<<< HEAD
-  "main": "app.js",
-=======
   "description": "",
-  "main": "index.js",
->>>>>>> 3b701bd42ff5f3c66f423c81ce4e55a48c0e710c
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "sqlite3-transactions": "^0.0.5",
+    "sqlite3": "^3.1.4"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,17 +23,5 @@
   "bugs": {
     "url": "https://github.com/paulgfrey/slackclone/issues"
   },
-  "homepage": "https://github.com/paulgfrey/slackclone#readme",
-  "dependencies": {
-<<<<<<< HEAD
-    "sqlite3": "^3.1.4"
-  },
-  "devDependencies": {},
-  "description": ""
-=======
-    "express": "^4.14.0",
-    "node": "0.0.0",
-    "sqlite3": "^3.1.4"
-  }
->>>>>>> 3b701bd42ff5f3c66f423c81ce4e55a48c0e710c
+  "homepage": "https://github.com/paulgfrey/slackclone#readme"
 }
