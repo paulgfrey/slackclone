@@ -1,23 +1,31 @@
 // TestUserHandler - test all the user functions
 var sqlite3 = require('sqlite3');
+var expect = require('expect.js');
 
-var _ = request("../userhandler.js");
+
+var userHandler = require("../userhandler.js");
 var db = new sqlite3.Database('testslackclone.db');
 
 describe('Test getUserJSON', () => {
-  before(function { 
+  beforeEach(() => { 
+      console.log('BEGIN');
       db.exec("BEGIN");
   });
-  after(function {
+  afterEach(() => {
+      console.log('ROLLBACK');
       db.exec("ROLLBACK");
   });
   it('#1 getUserProfileJSON', () => {
-    var userId = 0;
-    var user = { id: userID, name: "Paul Frey", password: "superman", email: "paulgfrey@gmail.com" };
-    var expected = JSON.parse(user);
-    var actual = _.getUserProfileJSON(db, userId);
-    actual.must.eql(expected);
-  })
+    var userId = 1;
+    var user = { id: userId, name: "shuvo", password: "QWERWRER", email: "BLASHS@GMAIL.COM" };
+    var expected = JSON.stringify(user);
+    var actual = userHandler.getUserProfileJSON(db, userId).then({
+        
+    })
+    console.log('expected=' + expected);
+    console.log('actual=' + actual);
+    expect(expected).to.equal(actual);
+   })
 });
 
 describe('Test createUserProfile', () => {
@@ -30,18 +38,18 @@ describe('Test createUserProfile', () => {
       db.exec("ROLLBACK");
   });
   it('#1 createUserProfile', () => {
-    var userId = 0;
-    var user = { id: userID, name: "Paul", password: "superman", email: "paulgfrey@gmail.com" };
+    var userId = 1;
+    var user = { id: userID, name: "shuvo", password: "QWERWRER", email: "BLASHS@GMAIL.COM" };
     var expected = JSON.parse(user);
-    _.createUser(db, user.id, user.name, user.password, user.email);
+    userHandler.createUser(db, user.id, user.name, user.password, user.email);
     getUserFromDb(user.id).then(
         (user) => {
-            actual = JSON.parse(user);
+            actual = JSON.stringify(user);
         }).catch((err) => {
             console.log('db error = ' + err);
         }
     );
-    actual.must.eql(expected);
+    expect(expected).to.equal(actual);
   })
 });
 
