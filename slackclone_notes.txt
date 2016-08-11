@@ -1,0 +1,49 @@
+Paul createDB.js - create the initial entries 
+Team
+	ID Sequence (PK)
+	Name Text (UK)
+Users
+	ID
+	Name 
+	Password
+	emails
+	
+TeamUsers
+	ID 
+	UserID FK
+	TeamID FK
+	
+Channels
+	ID Sequence
+	Name Text
+	TeamID FK
+	Description
+	Type // team vs private
+	
+Messages
+	ID
+	Content
+	userID FK  // author
+	channelID FK
+	Timestamp Date
+
+rest services
+userhandler.js
+userHandlerDB.js (tests/TestUserHandler.js)
+Paul /rest/user/create/<userID>?firstName=&... (POST)
+Paul /rest/user/profile/<userID> (GET)
+
+teamHandler.js
+teamHandlerDB.js (tests/TestTeamHandler.js)
+Arun /rest/team/user/<userID> json list of teams for the userID
+Arun /rest/team/channels/<teamID>/<userID> json list channels for that teamID and userID
+
+channelHandler.js (tests/TestChannelHandler)
+channelHandlerDB.js (tests/MockTeamHandlerDB.js)
+/rest/channel/chats/<teamID>/<channelID> json list of chat messages for channel (GET)
+/rest/channel/chats/msg/<teamID>/<channelID>/<userID>?msg= (POST) (public)
+
+directHandler.js
+
+
+

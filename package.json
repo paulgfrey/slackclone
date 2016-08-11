@@ -1,0 +1,23 @@
+{
+  "name": "slackclone",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulgfrey/slackclone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulgfrey/slackclone/issues"
+  },
+  "homepage": "https://github.com/paulgfrey/slackclone#readme",
+  "dependencies": {
+    "sqlite3": "^3.1.4"
+  },
+  "devDependencies": {},
+  "description": ""
+}
