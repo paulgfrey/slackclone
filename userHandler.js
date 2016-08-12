@@ -1,6 +1,7 @@
 var sqlite3 = require('sqlite3');
 
-function getUserInfoJSON(db, userId) {
+exports.getUserProfileJSON = getUserProfileJSON;
+function getUserProfileJSON(db, userId) {
     return new Promise((resolve, reject) => {
         var query = "SELECT * FROM USERS "
             + "  WHERE ID = '" + userId + "'";

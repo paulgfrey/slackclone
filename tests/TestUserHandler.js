@@ -19,13 +19,16 @@ describe('Test getUserJSON', () => {
     var userId = 1;
     var user = { id: userId, name: "shuvo", password: "QWERWRER", email: "BLASHS@GMAIL.COM" };
     var expected = JSON.stringify(user);
-    var actual = userHandler.getUserProfileJSON(db, userId).then({
-        
-    })
-    console.log('expected=' + expected);
-    console.log('actual=' + actual);
-    expect(expected).to.equal(actual);
-   })
+    var actual = userHandler.getUserProfileJSON(db, userId).then(
+        (userJSON) => {
+            actual = userJSON;
+            console.log('expected=' + expected);
+            console.log('actual=' + actual);
+            expect(expected).to.equal(actual);
+       }).catch((err) => {
+            throw err;
+        });
+    });
 });
 
 describe('Test createUserProfile', () => {
