@@ -2,8 +2,7 @@
 
   Test userHandler
     √ #1 getUserProfileJSON
-db={"open":true,"filename":"testslackclone.db","mode":65542}
-db.lastInsertRowId=undefined
+this.lastRowID=undefined
     1) #2 createUserProfile
 
 
