@@ -13,6 +13,7 @@ function getUserProfileJSON(db, userId) {
             function(err) {
                 if(err) {
                     reject(err);
+                    throw err;
                 }
                 else {
                     resolve(JSON.stringify(user));
@@ -22,15 +23,21 @@ function getUserProfileJSON(db, userId) {
 }
 
 exports.createUserProfile = createUserProfile;
-function createUserProfile(db, id, name, password, email) {
-    /*
-    var sql = "INSERT INTO USER(ID, NAME, PASSWORD, EMAIL) " +
-                "VALUE (?, ?, ?, ?)";
-    db.run(sql, id, name, password, email, (err) => {
-        if(err) {
-            throw(err);
-        }
-
-    })
-    */
+function createUserProfile(db, name, password, email) {
+    // TODO Need to return ID from DB.
+    return new Promise((resolve, reject) => {
+        var sql = "INSERT INTO USERS(NAME, PASSWORD, EMAIL) " +
+                "VALUES (?, ?, ?)";
+        db.run(sql, name, password, email, (err) => {
+            if(err) {
+                reject(err);
+                throw err;
+            }
+            else {
+                console.log('db=' + JSON.stringify(db));
+                console.log('db.lastInsertRowId=' + db.lastInsertRowId);
+                resolve(db.lastInsertRowId);
+            }
+        });
+    });
 }

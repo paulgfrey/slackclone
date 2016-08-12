@@ -1,81 +1,61 @@
 // TestUserHandler - test all the user functions
 var sqlite3 = require('sqlite3');
 var expect = require('expect.js');
+var assert = require('assert');
+var chai = require("chai");
+var chaiAsPromised = require("chai-as-promised");
 
+chai.use(chaiAsPromised);
+chai.should();
 
 var userHandler = require("../userhandler.js");
 var db = new sqlite3.Database('testslackclone.db');
 
-describe('Test getUserJSON', () => {
-  beforeEach(() => { 
-      console.log('BEGIN');
-      db.exec("BEGIN");
-  });
-  afterEach(() => {
-      console.log('ROLLBACK');
-      db.exec("ROLLBACK");
-  });
-  it('#1 getUserProfileJSON', () => {
-    var userId = 1;
-    var user = { id: userId, name: "shuvo", password: "QWERWRER", email: "BLASHS@GMAIL.COM" };
-    var expected = JSON.stringify(user);
-    var actual = userHandler.getUserProfileJSON(db, userId).then(
-        (userJSON) => {
-            actual = userJSON;
-            console.log('expected=' + expected);
-            console.log('actual=' + actual);
-            expect(expected).to.equal(actual);
-       }).catch((err) => {
-            throw err;
-        });
+describe('Test userHandler', () => {
+    beforeEach(() => {
+        db.exec('BEGIN');
     });
-});
+    afterEach(() => {
+        db.exec('ROLLBACK');
+    });
+    it('#1 getUserProfileJSON', (done) => {
+        var userId = 1;
+        var user = { id: userId, name: "shuvo", password: "QWEWRER", email: "BLASHS@GMAIL.COM" };
+        var expected = JSON.stringify(user);
+        userHandler.getUserProfileJSON(db, userId).should.eventually.equal(expected).notify(done);
+    });
 
-describe('Test createUserProfile', () => {
-  beforeEach(() => { 
-      console.log('BEGIN');
-      db.exec("BEGIN");
-  });
-  afterEach(() => {
-      console.log('ROLLBACK');
-      db.exec("ROLLBACK");
-  });
-  it('#1 createUserProfile', () => {
-    var userId = 1;
-    var user = { id: userID, name: "shuvo", password: "QWERWRER", email: "BLASHS@GMAIL.COM" };
-    var expected = JSON.parse(user);
-    userHandler.createUser(db, user.id, user.name, user.password, user.email);
-    getUserFromDb(user.id).then(
-        (user) => {
-            actual = JSON.stringify(user);
-        }).catch((err) => {
-            console.log('db error = ' + err);
-        }
-    );
-    expect(expected).to.equal(actual);
-  })
+    it('#2 createUserProfile', (done) => {
+        var user = { name: "Paul Frey", password: "superman", email: "paulgfrey@gmail.com" };
+        var expected = JSON.stringify(user);
+        userHandler.createUserProfile(db, user.name, user.password, user.email)
+            .then(
+            () => {
+                return getUserFromDb(user.id);
+            })
+            .should.eventually.equal(expected).notify(done);
+    });
 });
 
 function getUserFromDb(userId) {
     return new Promise((resolve, reject) => {
-        console.log('getUserInfo');
-        var query = "SELECT * FROM USER "
+        var query = "SELECT * FROM USERS "
             + "  WHERE ID = '" + userId + "'";
         var user;
         db.each(query,
-            function(err, row) {
-                if(err) {
+            function (err, row) {
+                if (err) {
                     throw err;
                 }
                 user = { id: ID, name: row.NAME, password: row.PASSWORD, email: row.EMAIL };
             },
-            function(err) {
-                if(err) {
+            function (err) {
+                if (err) {
                     reject(err);
                 }
                 else {
-                    resolve(user);
+                    resolve(JSON.stringify(user));
                 }
-        });
+            });
     });
 }

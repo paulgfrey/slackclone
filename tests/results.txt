@@ -1,37 +1,18 @@
 
 
-  Test getUserJSON
-BEGIN
+  Test userHandler
     √ #1 getUserProfileJSON
-ROLLBACK
-
-  Test createUserProfile
-expected={"id":1,"name":"shuvo","password":"QWERWRER","email":"BLASHS@GMAIL.COM"}
-actual={"id":1,"name":"shuvo","password":"QWEWRER","email":"BLASHS@GMAIL.COM"}
-BEGIN
-    1) #1 createUserProfile
-ROLLBACK
+db={"open":true,"filename":"testslackclone.db","mode":65542}
+db.lastInsertRowId=undefined
+    1) #2 createUserProfile
 
 
   1 passing (0ms)
   1 failing
 
-  1) Test createUserProfile #1 createUserProfile:
-     ReferenceError: userID is not defined
-      at Context.it (C:\Users\admin\slackclone\tests\TestUserHandler.js:45:22)
-      at callFn (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runnable.js:334:21)
-      at Test.Runnable.run (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runnable.js:327:7)
-      at Runner.runTest (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:429:10)
-      at C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:535:12
-      at next (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:349:14)
-      at C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:359:7
-      at next (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:285:14)
-      at C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:322:7
-      at done (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runnable.js:291:5)
-      at callFn (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runnable.js:352:7)
-      at Hook.Runnable.run (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runnable.js:327:7)
-      at next (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:299:10)
-      at Immediate.<anonymous> (C:\Users\admin\AppData\Roaming\npm\node_modules\mocha\lib\runner.js:327:5)
+  1) Test userHandler #2 createUserProfile:
+     AssertionError: expected undefined to equal '{"name":"Paul Frey","password":"superman","email":"paulgfrey@gmail.com"}'
+  
 
 
 
