@@ -52,6 +52,7 @@ function getUserFromDb(userId) {
             function (err) {
                 if (err) {
                     reject(err);
+                    throw err;
                 }
                 else {
                     resolve(JSON.stringify(user));
