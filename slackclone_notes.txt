@@ -32,14 +32,52 @@ userhandler.js (tests/TestUserHandler.js)
 Paul /rest/user/create/<userID>?firstName=&... (POST)
 Paul /rest/user/profile/<userID> (GET)
 
+
+--------------------------------------------------------------------------------------
 teamHandler.js (tests/TestTeamHandler.js)
 Arun /rest/team/user/<userID> json list of teams for the userID
+/*******Query******/
+Select 
+	T1.* from Team T1, TeamUser TU1
+Where
+	T1.ID = TU1.USERID
+	And TU1.USERID = ?
+/******************/
+
 Arun /rest/team/channels/<teamID>/<userID> json list channels for that teamID and userID
+/*******Query******/
+Select 
+	C1.* from Channel C1, TeamUser TU1
+Where
+	C1.TEAMID = TU1.TEAMID
+	And TU1.USERID = ?
+	AND TU1.TEAMID = ?
+/******************/
 
+
+-------------------------------------------------------------------------------------
 channelHandler.js (tests/MockTeamHandlerDB.js)
+/****Need to have Message Name changed to something like 'Content' or 'MSG'********/
 /rest/channel/chats/<teamID>/<channelID> json list of chat messages for channel (GET)
-/rest/channel/chats/msg/<teamID>/<channelID>/<userID>?msg= (POST) (public)
+/*******Query*******/
+Select 
+	M1.* from Messages M1,CHANNELS C1
+Where
+	M1.CHANNELID = C1.ID
+	AND M1.TEMAID = ?
+	AND C1.ID = ? 
+/*******************/
 
+/rest/channel/chats/msg/<teamID>/<channelID>/<userID>?msg= (POST) (public)
+/*******Query*******/
+Select 
+	M1.* from Messages M1,CHANNELS C1
+Where
+	M1.CHANNELID = C1.ID
+	AND M1.TEMAID = ?
+	AND C1.ID = ? 
+	(??? LEFT OFF HERE ???)
+/*******************/
 directHandler.js
 
 
