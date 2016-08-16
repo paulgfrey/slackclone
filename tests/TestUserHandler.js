@@ -30,8 +30,8 @@ describe('Test userHandler', () => {
         var expected = JSON.stringify(user);
         userHandler.createUserProfile(db, user.name, user.password, user.email)
             .then(
-            () => {
-                return getUserFromDb(user.id);
+            (userId) => {
+                return getUserFromDb(userId);
             })
             .should.eventually.equal(expected).notify(done);
     });
@@ -39,7 +39,7 @@ describe('Test userHandler', () => {
 
 function getUserFromDb(userId) {
     return new Promise((resolve, reject) => {
-        var query = "SELECT * FROM USERS "
+        var query = "SELECT NAME, PASSWORD, EMAIL FROM USERS "
             + "  WHERE ID = '" + userId + "'";
         var user;
         db.each(query,
@@ -47,7 +47,7 @@ function getUserFromDb(userId) {
                 if (err) {
                     throw err;
                 }
-                user = { id: ID, name: row.NAME, password: row.PASSWORD, email: row.EMAIL };
+                user = { name: row.NAME, password: row.PASSWORD, email: row.EMAIL };
             },
             function (err) {
                 if (err) {

@@ -28,14 +28,15 @@ function createUserProfile(db, name, password, email) {
     return new Promise((resolve, reject) => {
         var sql = "INSERT INTO USERS(NAME, PASSWORD, EMAIL) " +
                 "VALUES (?, ?, ?)";
-        db.run(sql, name, password, email, (err) => {
+        db.run(sql, name, password, email, function(err) {
             if(err) {
                 reject(err);
                 throw err;
             }
             else {
-                console.log('this.lastRowID=' + this.lastRowID);
-                resolve(this.lastRowID);
+                console.log('this=' + JSON.stringify(this));
+                console.log('this.lastID=' + this.lastID);
+                resolve(this.lastID);
             }
         });
     });

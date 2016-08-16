@@ -2,11 +2,12 @@
 
   Test userHandler
     √ #1 getUserProfileJSON
+this={}
 this.lastRowID=undefined
     1) #2 createUserProfile
 
 
-  1 passing (0ms)
+  1 passing (15ms)
   1 failing
 
   1) Test userHandler #2 createUserProfile:
