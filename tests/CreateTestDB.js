@@ -64,8 +64,7 @@ if (!dbexists) {
                 console.log('created Team table.');
             }
         });
-		
-		//Here is comment two
+
         db.run(createUSERSTableSql, function(err) {
             if(err) {
                 throw(err);

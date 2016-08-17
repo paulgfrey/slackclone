@@ -56,7 +56,7 @@ Where
 
 
 -------------------------------------------------------------------------------------
-Joseph channelHandler.js (tests/MockTeamHandlerDB.js)
+Joseph channelHandler.js (tests/TestChannelHandler.js)
 /****Need to have Message Name changed to something like 'Content' or 'MSG'********/
 /rest/channel/chats/<teamID>/<channelID> json list of chat messages for channel (GET)
 /*******Query*******/
@@ -68,7 +68,7 @@ Where
 	AND C1.ID = ? 
 /*******************/
 
-/rest/channel/chats/msg/<teamID>/<channelID>/<userID>?msg= (POST) (public)
+This is for private messages which we are defering for now.
 /*******Query*******/
 Select 
 	M1.* from Messages M1,CHANNELS C1
@@ -81,7 +81,9 @@ Where
 directHandler.js
 
 Paul
-/rest/channel
+messageHandler.js (tests/TestMessageHandler.js)
+/rest/channel/chats/msg/<teamID>/<channelID>/<userID>?msg= (POST) (public)
+
 
 
 
