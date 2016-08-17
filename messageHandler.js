@@ -1,20 +1,21 @@
 var sqlite3 = require('sqlite3');
-var userHandler = require('userHandler.js');
 
+/**
+ * This method inserts a channel message into the database.
+ */
 exports.addChannelMessage = addChannelMessage;
-function addChannelMessage(db, teamId, channelId, userId, msg) {
+function addChannelMessage(db, channelId, userId, msg) {
     // TODO Need to return ID from DB.
     return new Promise((resolve, reject) => {
-        var sql = "INSERT INTO MESSAGES(NAME, PASSWORD, EMAIL) " +
+        var sql = "INSERT INTO MESSAGES(CHANNELID, USERID, MSG) " +
                 "VALUES (?, ?, ?)";
-        db.run(sql, name, password, email, function(err) {
+        db.run(sql, channelId, userId, msg, function(err) {
             if(err) {
                 reject(err);
                 throw err;
             }
             else {
-                console.log('this=' + JSON.stringify(this));
-                console.log('this.lastID=' + this.lastID);
+                console.log('Inserted msg [' + msg + '] into message table from ' + userId);
                 resolve(this.lastID);
             }
         });
