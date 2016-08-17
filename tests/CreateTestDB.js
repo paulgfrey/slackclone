@@ -111,7 +111,24 @@ if (!dbexists) {
                    "('Channel-2: Bears', 1, 'Channel 2 is about bears','Public')," +
                    "('Channel-3: Chairs',2, 'Channel 3 is about chairs','Public')," +
                    "('Channel-4: Doors',2, 'Channel 3 is about doors','Public')" ;
-                
+
+/*
+       var createMESSAGESTableSql = "CREATE TABLE IF NOT EXISTS MESSAGES " +
+                    "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL ," +
+                    " USERID     INTEGER ," +
+                    " CHANNELID     INTEGER ," +
+                    " TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP ," + 
+                    " MSG       CHAR(4096) NOT NULL, " +
+                      "FOREIGN KEY(USERID) REFERENCES USERS(ID), " +   
+                       "FOREIGN KEY(CHANNELID) REFERENCES CHANNEL(ID)) "   ;
+*/
+
+        var insertMessageTableSql = "INSERT INTO MESSAGES (USERID, CHANNELID,MSG) " +
+           "VALUES (1, 1, 'Message 1: We Made Marks Day')," +
+                   "(1,2, 'Message 2: We are good to go')," +
+                   "(2,1, 'Message 3: User 2, Channel 1')," +
+                   "(2,2, 'Message 4: User 2, Channel 2')" ;
+
         db.run(insertTEAMTableSql, function(err) {
             if(err) {
                 throw(err);
@@ -136,6 +153,15 @@ if (!dbexists) {
             }
             else {
                 console.log('Inserting into Channel Table');
+            };
+        });
+
+        db.run(insertMessageTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('Inserting into Message Table');
             };
         });
         
