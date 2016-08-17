@@ -44,22 +44,56 @@ if (!dbexists) {
                     " TYPE      CHAR(10)   NOT NULL , " +
                      " FOREIGN KEY(TEAMID) REFERENCES TEAM(ID) )"  ;
                     
-
        var createMESSAGESTableSql = "CREATE TABLE IF NOT EXISTS MESSAGES " +
                     "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL ," +
                     " NAME      CHAR(25)   NOT NULL ,"  + 
                     " USERID     INTEGER ," +
                     " CHANNELID     INTEGER ," +
                     " TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP ," + 
+                    " MSG       CHAR(4096) NOT NULL, " +
                       "FOREIGN KEY(USERID) REFERENCES USERS(ID), " +   
                        "FOREIGN KEY(CHANNELID) REFERENCES CHANNEL(ID)) "   ;
 
-
-        db.run(createTEAMTableSql);
-        db.run(createUSERSTableSql);
-        db.run(createTEAMUSERSTableSql);
-        db.run(createCHANNELTableSql);
-        db.run(createMESSAGESTableSql);
+        db.run(createTEAMTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('created Team table.');
+            }
+        });
+        db.run(createUSERSTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('created User table');
+            }
+        });
+        db.run(createTEAMUSERSTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('created TeamUser table.');
+            }
+        });
+        db.run(createCHANNELTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('created Channel table.');
+            }
+        });
+        db.run(createMESSAGESTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('created Messages table.');
+            }
+        });
 
         var insertTEAMTableSql = "INSERT INTO TEAM ( NAME) " +
             "VALUES ('team1')," +
@@ -88,12 +122,6 @@ if (!dbexists) {
     });
 
 }
-
-
- db.each("SELECT * FROM TEAM", function(err, row) {
-            console.log(row.ID + ": " + row.NAME);
-        });
-
         
 // db.close();
 

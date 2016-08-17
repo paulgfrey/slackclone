@@ -34,8 +34,8 @@ Paul /rest/user/profile/<userID> (GET)
 
 
 --------------------------------------------------------------------------------------
-teamHandler.js (tests/TestTeamHandler.js)
-Arun /rest/team/user/<userID> json list of teams for the userID
+Bob teamHandler.js (tests/TestTeamHandler.js)
+/rest/team/user/<userID> json list of teams for the userID
 /*******Query******/
 Select 
 	T1.* from Team T1, TeamUser TU1
@@ -44,7 +44,7 @@ Where
 	And TU1.USERID = ?
 /******************/
 
-Arun /rest/team/channels/<teamID>/<userID> json list channels for that teamID and userID
+/rest/team/channels/<teamID>/<userID> json list channels for that teamID and userID
 /*******Query******/
 Select 
 	C1.* from Channel C1, TeamUser TU1
@@ -56,7 +56,7 @@ Where
 
 
 -------------------------------------------------------------------------------------
-channelHandler.js (tests/MockTeamHandlerDB.js)
+Joseph channelHandler.js (tests/MockTeamHandlerDB.js)
 /****Need to have Message Name changed to something like 'Content' or 'MSG'********/
 /rest/channel/chats/<teamID>/<channelID> json list of chat messages for channel (GET)
 /*******Query*******/
