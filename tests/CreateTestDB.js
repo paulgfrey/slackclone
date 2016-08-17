@@ -16,6 +16,7 @@ var db = new sqlite3.Database('testslackclone.db');
 
 if (!dbexists) {
     db.serialize(function() {
+        //Creating Tables
          var createTEAMTableSql = "CREATE TABLE IF NOT EXISTS TEAM " +
                        "(ID             INTEGER PRIMARY KEY AUTOINCREMENT," +
                        " NAME           CHAR(50)    NOT NULL UNIQUE )"; 
@@ -72,12 +73,14 @@ if (!dbexists) {
                    "('PAUL', 'QWEWRER', 'BRRTTS@GMAIL.COM')," +
                    "( 'JASON', 'QWEWRER', 'BRTRRTS@GMAIL.COM')" ;
 
-                
 
-        // var insertTEAMUSERSTableSql = "INSERT INTO TWEET (USERID, TWEET, DATE) " +
-        //      "VALUES ('shuvo',      'Welcome to Tweeter Clone',                     '2016-08-05 12:45:00'), " +
-        //             "('abu',        'Tweet by Abu',                                 '2016-08-05 12:46:00'), " +
-         
+/*
+       var insertChannelTableSql = "INSERT INTO CHANNEL (NAME, PASSWORD, EMAIL) " +
+           "VALUES ('shuvo', 'QWEWRER', 'BLASHS@GMAIL.COM')," +
+                   "('GREG', 'QWEWRER',  'RTERE@GMAIL.COM')," +
+                   "('PAUL', 'QWEWRER', 'BRRTTS@GMAIL.COM')," +
+                   "( 'JASON', 'QWEWRER', 'BRTRRTS@GMAIL.COM')" ;
+  */       
       
         db.run(insertTEAMTableSql);
         db.run(insertUSERSTableSql);
@@ -88,12 +91,6 @@ if (!dbexists) {
     });
 
 }
-
-
- db.each("SELECT * FROM TEAM", function(err, row) {
-            console.log(row.ID + ": " + row.NAME);
-        });
-
-        
+     
 // db.close();
 
