@@ -95,7 +95,7 @@ if (!dbexists) {
             }
         });
 
-        var insertTEAMTableSql = "INSERT INTO TEAM ( NAME) " +
+       var insertTEAMTableSql = "INSERT INTO TEAM ( NAME) " +
             "VALUES ('team1')," +
                    "('team2')," +
                    "('team3')" ;
@@ -147,7 +147,13 @@ if (!dbexists) {
                 console.log('Inserting into Channel Table');
             };
         });
-     
+        
+        var insertTEAMUSERSTableSql = "INSERT INTO TEAMUSERS (ID, USERID, TEAMID) " +
+           "VALUES ('1', '1', '1')," +
+                   "('2', '2',  '2')," +
+                   "('3', '4', '2')";
+
+         db.run(insertTEAMUSERSTableSql);
 
    
     });

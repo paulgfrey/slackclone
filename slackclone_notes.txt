@@ -40,7 +40,7 @@ Bob teamHandler.js (tests/TestTeamHandler.js)
 Select 
 	T1.* from Team T1, TeamUser TU1
 Where
-	T1.ID = TU1.USERID
+	T1.ID = TU1.TEAMID
 	And TU1.USERID = ?
 /******************/
 
