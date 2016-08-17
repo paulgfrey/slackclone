@@ -53,8 +53,6 @@ if (!dbexists) {
                       "FOREIGN KEY(USERID) REFERENCES USERS(ID), " +   
                        "FOREIGN KEY(CHANNELID) REFERENCES CHANNEL(ID)) "   ;
 
-        // Need to ensure we catch errors.
-		//Create Comment here 
         db.run(createTEAMTableSql, function(err) {
             if(err) {
                 throw(err);
@@ -108,17 +106,48 @@ if (!dbexists) {
                    "('PAUL', 'QWEWRER', 'BRRTTS@GMAIL.COM')," +
                    "( 'JASON', 'QWEWRER', 'BRTRRTS@GMAIL.COM')" ;
 
+/*
+   "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL," +
+                    " NAME      CHAR(25)   NOT NULL  ,"  + 
+                     "TEAMID  INTEGER ," +
+                     " DESCRIPTION  CHAR(50) , "   +
+                    " TYPE      CHAR(10)   NOT NULL , " +
+                     " FOREIGN KEY(TEAMID) REFERENCES TEAM(ID) )"  ;
+*/
+
+        var insertChannelTableSql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION,TYPE) " +
+           "VALUES ('Channel-1: Apples', 1, 'Channel 1 is about apples','Public')," +
+                   "('Channel-2: Bears', 1, 'Channel 2 is about bears','Public')," +
+                   "('Channel-3: Chairs',2, 'Channel 3 is about chairs','Public')," +
+                   "('Channel-4: Doors',2, 'Channel 3 is about doors','Public')" ;
                 
+        db.run(insertTEAMTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('Inserting into Team Table');
+            };
+        });
 
-        // var insertTEAMUSERSTableSql = "INSERT INTO TWEET (USERID, TWEET, DATE) " +
-        //      "VALUES ('shuvo',      'Welcome to Tweeter Clone',                     '2016-08-05 12:45:00'), " +
-        //             "('abu',        'Tweet by Abu',                                 '2016-08-05 12:46:00'), " +
-         
-      
-        db.run(insertTEAMTableSql);
-        db.run(insertUSERSTableSql);
-
-     //   db.run(insertTEAMUSERSTableSql);
+        db.run(insertUSERSTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('Inserting into User Table');
+            };
+        });
+  
+        db.run(insertChannelTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('Inserting into Channel Table');
+            };
+        });
+     
 
    
     });
