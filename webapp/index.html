@@ -38,6 +38,39 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
+    <script src="channelPostCtrl.js"></script>
+    <script src="channelMsgsCtrl.js"></script>
+    <script src="teamCtrl.js"></script>
+    <script src="channelCtrl.js"></script>
+    <script>
+    var stackCloneApp = angular.module("stackCloneApp", []);
+          storeApp.config(function($routeProvider) {
+        $routeProvider.
+          when('/', {
+            templateUrl: 'index.html',
+            controller: 'mainCtrl'
+          }).
+          when('/team', {
+            templateUrl: 'team.html',
+            controller: 'teamCtrl'
+          }).
+          when('/channel', {
+            templateUrl: 'channel.html',
+            controller: 'channelCtrl'
+          }).
+          when('/channelMsgs', {
+            templateUrl: 'channelMsgs.html',
+            controller: 'channelMsgsCtrl'
+          }).
+          when('/channelPost', {
+            templateUrl: 'channelPost.html',
+            controller: 'channelPostCtrl'
+          }).
+         otherwise({
+            redirectTo: '/'
+          });
+      });
+    </script>
   </head>
   <body ng-app>
     <div class="mainBody">
