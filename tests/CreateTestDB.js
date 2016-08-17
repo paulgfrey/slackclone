@@ -177,5 +177,5 @@ if (!dbexists) {
 
 }
         
-// db.close();
+db.close();
 
