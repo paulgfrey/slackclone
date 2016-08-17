@@ -1,1 +1,54 @@
-<h1>Slack Clone</h1>
+<html ng-app="stackCloneApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Stack Clone</title>
+    <style>
+        .mainBody
+        {
+            height: 95%;
+            width: 95%;
+        }
+        .team
+        {
+            width: 30%;
+            height: 95%;
+            float: left;
+            border:5px solid cyan;
+        }
+        .channels 
+        {
+            width: 95%;
+            height: 95%;
+            border:5px solid cyan;
+        }
+         .channelPostMessage
+        {
+            position: relative;
+            bottom: 0px;
+            height: 50px;
+            border:5px solid cyan;
+        }
+       .channelMessages
+        {
+            width: 60%;
+            height: 95%;
+            float: right;
+            border:5px solid cyan;
+        }​
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
+  </head>
+  <body ng-app>
+    <div class="mainBody">
+        <div ng-controller="teamCtrl" class="team" ng-view>
+            <div ng-controller="channelsCtrl" class="channels" ng-view>
+            </div>
+        </div>
+        <div ng-controller="channelMsgsCtrl" class="channelMessages" ng-view>
+            <div ng-controller="channelPostCtrl" class="channelPostMessage" ng-view>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>

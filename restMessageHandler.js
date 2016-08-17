@@ -19,6 +19,6 @@ function postChannelMessage(req, res) {
         }
     )
     .catch(function(err) {
-        res.send({error: err});
+        res.status(500).json({ error: 'message' });
     });
 }
