@@ -1,4 +1,4 @@
-// TestUserHandler - test all the user functions
+
 var sqlite3 = require('sqlite3');
 var expect = require('expect.js');
 var assert = require('assert');
@@ -31,29 +31,3 @@ describe('Test channelHandler', () => {
     });
 
 });
-
-/*
-function getUserFromDb(userId) {
-    return new Promise((resolve, reject) => {
-        var query = "SELECT NAME, PASSWORD, EMAIL FROM USERS "
-            + "  WHERE ID = '" + userId + "'";
-        var user;
-        db.each(query,
-            function (err, row) {
-                if (err) {
-                    throw err;
-                }
-                user = { name: row.NAME, password: row.PASSWORD, email: row.EMAIL };
-            },
-            function (err) {
-                if (err) {
-                    reject(err);
-                    throw err;
-                }
-                else {
-                    resolve(JSON.stringify(user));
-                }
-            });
-    });
-}
-*/

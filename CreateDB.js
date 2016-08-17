@@ -15,7 +15,8 @@ function createDB() {
 
     var db = new sqlite3.Database(filename);
 
-
+	console.log("Creating slackclone.db if not existant");
+	
     if (!dbexists) {
         db.serialize(function() {
             var createTEAMTableSql = "CREATE TABLE IF NOT EXISTS TEAM " +

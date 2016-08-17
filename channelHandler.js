@@ -4,7 +4,8 @@ exports.getChannelMessageJSON = getChannelMessageJSON;
 function getChannelMessageJSON(db,channelID) {
     return new Promise((resolve, reject) => {
         var query = "SELECT * FROM MESSAGES M1"
-            + "  WHERE M1.CHANNELID = '" + channelID + "'";
+            + "  WHERE M1.CHANNELID = '" + channelID + "'"
+            + " ORDER BY M1.TIMESTAMP";
         var users = [];
         
         db.each(query,
