@@ -7,7 +7,6 @@ function getChannelMessageJSON(db,channelID) {
             + "  WHERE M1.CHANNELID = '" + channelID + "'"
             + " ORDER BY M1.TIMESTAMP";
         var users = [];
-        
         db.each(query,
             function(err, row) {
                 users.push({ id: row.ID, userID: row.USERID, channelID: row.CHANNELID, 
