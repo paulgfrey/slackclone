@@ -1,0 +1,24 @@
+<html ng-app = "myApp"" >
+	<head>
+		<meta charset="utf-8">
+		<title>Test Rest Calls</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myCtrl', function($scope, $http) {
+				$http.get("/rest/channel/chats/2")
+				.then(function(response) {
+					$scope.myWelcome = response.data.message;
+				});
+				
+				
+			});
+		</script>
+
+	</head>
+	<body ng-controller="myCtrl">
+		<h1>Here is the list of Messages:{{myWelcome}}</h1>
+		
+	</body>
+</html>
