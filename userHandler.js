@@ -34,8 +34,6 @@ function createUserProfile(db, name, password, email) {
                 throw err;
             }
             else {
-                console.log('this=' + JSON.stringify(this));
-                console.log('this.lastID=' + this.lastID);
                 resolve(this.lastID);
             }
         });

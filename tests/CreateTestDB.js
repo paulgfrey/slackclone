@@ -61,7 +61,6 @@ if (!dbexists) {
                 console.log('created Team table.');
             }
         });
-
         db.run(createUSERSTableSql, function(err) {
             if(err) {
                 throw(err);
@@ -110,21 +109,14 @@ if (!dbexists) {
            "VALUES ('shuvo','1', 'description for shuvo','Private')," +
                    "('GREG', '2',  'description for Greg','Public')," +
                    "('PAUL', '3', 'description for PAUL','Private')";
-/*
-   "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL," +
-                    " NAME      CHAR(25)   NOT NULL  ,"  + 
-                     "TEAMID  INTEGER ," +
-                     " DESCRIPTION  CHAR(50) , "   +
-                    " TYPE      CHAR(10)   NOT NULL , " +
-                     " FOREIGN KEY(TEAMID) REFERENCES TEAM(ID) )"  ;
+
+        var insertMessageTableSql = "INSERT INTO MESSAGES (USERID, CHANNELID,MSG) " +
+           "VALUES (1, 1, 'Message 1: We Made Marks Day')," +
+                   "(1,2, 'Message 2: We are good to go')," +
+                   "(2,1, 'Message 3: User 2, Channel 1')," +
+                   "(2,2, 'Message 4: User 2, Channel 2')" ;
 
 
-        var insertChannelTableSql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION,TYPE) " +
-           "VALUES ('Channel-1: Apples', 1, 'Channel 1 is about apples','Public')," +
-                   "('Channel-2: Bears', 1, 'Channel 2 is about bears','Public')," +
-                   "('Channel-3: Chairs',2, 'Channel 3 is about chairs','Public')," +
-                   "('Channel-4: Doors',2, 'Channel 3 is about doors','Public')" ;*/
-                
         db.run(insertTEAMTableSql, function(err) {
             if(err) {
                 throw(err);
@@ -153,6 +145,15 @@ if (!dbexists) {
         });
 
       
+        db.run(insertMessageTableSql, function(err) {
+            if(err) {
+                throw(err);
+            }
+            else {
+                console.log('Inserting into Message Table');
+            };
+        });
+
         
         var insertTEAMUSERSTableSql = "INSERT INTO TEAMUSERS (ID, USERID, TEAMID) " +
            "VALUES ('1', '1', '1')," +
@@ -166,5 +167,5 @@ if (!dbexists) {
 
 }
         
-// db.close();
+db.close();
 
