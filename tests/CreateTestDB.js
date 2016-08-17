@@ -106,6 +106,10 @@ if (!dbexists) {
                    "('PAUL', 'QWEWRER', 'BRRTTS@GMAIL.COM')," +
                    "( 'JASON', 'QWEWRER', 'BRTRRTS@GMAIL.COM')" ;
 
+          var insertCHANNELTableSql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION, TYPE) " +
+           "VALUES ('shuvo','1', 'description for shuvo','Private')," +
+                   "('GREG', '2',  'description for Greg','Public')," +
+                   "('PAUL', '3', 'description for PAUL','Private')";
 /*
    "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL," +
                     " NAME      CHAR(25)   NOT NULL  ,"  + 
@@ -113,13 +117,13 @@ if (!dbexists) {
                      " DESCRIPTION  CHAR(50) , "   +
                     " TYPE      CHAR(10)   NOT NULL , " +
                      " FOREIGN KEY(TEAMID) REFERENCES TEAM(ID) )"  ;
-*/
+
 
         var insertChannelTableSql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION,TYPE) " +
            "VALUES ('Channel-1: Apples', 1, 'Channel 1 is about apples','Public')," +
                    "('Channel-2: Bears', 1, 'Channel 2 is about bears','Public')," +
                    "('Channel-3: Chairs',2, 'Channel 3 is about chairs','Public')," +
-                   "('Channel-4: Doors',2, 'Channel 3 is about doors','Public')" ;
+                   "('Channel-4: Doors',2, 'Channel 3 is about doors','Public')" ;*/
                 
         db.run(insertTEAMTableSql, function(err) {
             if(err) {
@@ -139,7 +143,7 @@ if (!dbexists) {
             };
         });
   
-        db.run(insertChannelTableSql, function(err) {
+        db.run(insertCHANNELTableSql, function(err) {
             if(err) {
                 throw(err);
             }
@@ -147,6 +151,8 @@ if (!dbexists) {
                 console.log('Inserting into Channel Table');
             };
         });
+
+      
         
         var insertTEAMUSERSTableSql = "INSERT INTO TEAMUSERS (ID, USERID, TEAMID) " +
            "VALUES ('1', '1', '1')," +
