@@ -83,7 +83,8 @@ Paul
 messageHandler.js (tests/TestMessageHandler.js)
 restMessageHandler.js
 Allow user to post a chat message
-/rest/channel/chats/msg/<channelID>/<userID>?msg= (POST) (public)
+/rest/channel/chats/msg
+	Post Parameters: msg= &channelId= &userId=
 
 
 
