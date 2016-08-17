@@ -1,10 +1,11 @@
 var sqlite3 = require('sqlite3');
 
-exports.getUserProfileJSON = getUserProfileJSON;
-function getUserProfileJSON(db, userId) {
+exports.getChannelMessageJSON = getUserProfileJSON;
+function getChannelMessageJSON(db, teamID,channelID) {
     return new Promise((resolve, reject) => {
-        var query = "SELECT * FROM USERS "
-            + "  WHERE ID = '" + userId + "'";
+        var query = "SELECT * FROM MESSAGES M1,CHANNEL C1"
+            + "  WHERE M1.CHANNELID = C1.ID"
+            + "  AND M1.;
         var user;
         db.each(query,
             function(err, row) {

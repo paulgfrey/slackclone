@@ -112,17 +112,6 @@ if (!dbexists) {
                    "('Channel-3: Chairs',2, 'Channel 3 is about chairs','Public')," +
                    "('Channel-4: Doors',2, 'Channel 3 is about doors','Public')" ;
 
-/*
-       var createMESSAGESTableSql = "CREATE TABLE IF NOT EXISTS MESSAGES " +
-                    "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL ," +
-                    " USERID     INTEGER ," +
-                    " CHANNELID     INTEGER ," +
-                    " TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP ," + 
-                    " MSG       CHAR(4096) NOT NULL, " +
-                      "FOREIGN KEY(USERID) REFERENCES USERS(ID), " +   
-                       "FOREIGN KEY(CHANNELID) REFERENCES CHANNEL(ID)) "   ;
-*/
-
         var insertMessageTableSql = "INSERT INTO MESSAGES (USERID, CHANNELID,MSG) " +
            "VALUES (1, 1, 'Message 1: We Made Marks Day')," +
                    "(1,2, 'Message 2: We are good to go')," +
