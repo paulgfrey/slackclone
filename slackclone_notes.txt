@@ -35,6 +35,7 @@ Paul /rest/user/profile/<userID> (GET)
 
 --------------------------------------------------------------------------------------
 Bob teamHandler.js (tests/TestTeamHandler.js)
+restTeamHandler.js (contains all the rest handling operations)
 /rest/team/user/<userID> json list of teams for the userID
 /*******Query******/
 Select 
@@ -57,15 +58,13 @@ Where
 
 -------------------------------------------------------------------------------------
 Joseph channelHandler.js (tests/TestChannelHandler.js)
-/****Need to have Message Name changed to something like 'Content' or 'MSG'********/
-/rest/channel/chats/<teamID>/<channelID> json list of chat messages for channel (GET)
+restChannelHandler.js
+/rest/channel/chats/<channelID> json list of chat messages for channel (GET)
 /*******Query*******/
 Select 
-	M1.* from Messages M1,CHANNELS C1
+	M1.* from Messages M1
 Where
-	M1.CHANNELID = C1.ID
-	AND M1.TEMAID = ?
-	AND C1.ID = ? 
+	M1.CHANNELID = ?
 /*******************/
 
 This is for private messages which we are defering for now.
@@ -82,6 +81,7 @@ directHandler.js
 
 Paul
 messageHandler.js (tests/TestMessageHandler.js)
+restMessageHandler.js
 Allow user to post a chat message
 /rest/channel/chats/msg/<channelID>/<userID>?msg= (POST) (public)
 
