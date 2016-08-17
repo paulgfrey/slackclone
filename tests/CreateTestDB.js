@@ -61,7 +61,11 @@ if (!dbexists) {
                 console.log('created Team table.');
             }
         });
+<<<<<<< Updated upstream
 
+=======
+        // Pauls comment to force collision
+>>>>>>> Stashed changes
         db.run(createUSERSTableSql, function(err) {
             if(err) {
                 throw(err);
