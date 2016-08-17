@@ -54,6 +54,7 @@ if (!dbexists) {
                       "FOREIGN KEY(USERID) REFERENCES USERS(ID), " +   
                        "FOREIGN KEY(CHANNELID) REFERENCES CHANNEL(ID)) "   ;
 
+        // Need to ensure we catch errors.
         db.run(createTEAMTableSql, function(err) {
             if(err) {
                 throw(err);

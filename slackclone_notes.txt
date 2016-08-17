@@ -80,5 +80,8 @@ Where
 /*******************/
 directHandler.js
 
+Paul
+/rest/channel
+
 
 
