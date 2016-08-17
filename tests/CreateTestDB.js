@@ -55,6 +55,7 @@ if (!dbexists) {
                        "FOREIGN KEY(CHANNELID) REFERENCES CHANNEL(ID)) "   ;
 
         // Need to ensure we catch errors.
+		//Create Comment here 
         db.run(createTEAMTableSql, function(err) {
             if(err) {
                 throw(err);
@@ -63,6 +64,8 @@ if (!dbexists) {
                 console.log('created Team table.');
             }
         });
+		
+		//Here is comment two
         db.run(createUSERSTableSql, function(err) {
             if(err) {
                 throw(err);
