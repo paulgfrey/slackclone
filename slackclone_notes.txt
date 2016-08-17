@@ -82,6 +82,7 @@ directHandler.js
 
 Paul
 messageHandler.js (tests/TestMessageHandler.js)
+Allow user to post a chat message
 /rest/channel/chats/msg/<teamID>/<channelID>/<userID>?msg= (POST) (public)
 
 

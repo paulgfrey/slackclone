@@ -46,7 +46,6 @@ if (!dbexists) {
                     
        var createMESSAGESTableSql = "CREATE TABLE IF NOT EXISTS MESSAGES " +
                     "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL ," +
-                    " NAME      CHAR(25)   NOT NULL ,"  + 
                     " USERID     INTEGER ," +
                     " CHANNELID     INTEGER ," +
                     " TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP ," + 
