@@ -106,15 +106,6 @@ if (!dbexists) {
                    "('PAUL', 'QWEWRER', 'BRRTTS@GMAIL.COM')," +
                    "( 'JASON', 'QWEWRER', 'BRTRRTS@GMAIL.COM')" ;
 
-/*
-   "(ID        INTEGER PRIMARY KEY AUTOINCREMENT   NOT NULL," +
-                    " NAME      CHAR(25)   NOT NULL  ,"  + 
-                     "TEAMID  INTEGER ," +
-                     " DESCRIPTION  CHAR(50) , "   +
-                    " TYPE      CHAR(10)   NOT NULL , " +
-                     " FOREIGN KEY(TEAMID) REFERENCES TEAM(ID) )"  ;
-*/
-
         var insertChannelTableSql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION,TYPE) " +
            "VALUES ('Channel-1: Apples', 1, 'Channel 1 is about apples','Public')," +
                    "('Channel-2: Bears', 1, 'Channel 2 is about bears','Public')," +
