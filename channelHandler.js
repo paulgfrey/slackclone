@@ -1,15 +1,16 @@
 var sqlite3 = require('sqlite3');
 
-exports.getChannelMessageJSON = getUserProfileJSON;
-function getChannelMessageJSON(db, teamID,channelID) {
+exports.getChannelMessageJSON = getChannelMessageJSON;
+function getChannelMessageJSON(db,channelID) {
     return new Promise((resolve, reject) => {
-        var query = "SELECT * FROM MESSAGES M1,CHANNEL C1"
-            + "  WHERE M1.CHANNELID = C1.ID"
-            + "  AND M1.;
-        var user;
+        var query = "SELECT * FROM MESSAGES M1"
+            + "  WHERE M1.CHANNELID = '" + channelID + "'";
+        var users = [];
+        
         db.each(query,
             function(err, row) {
-                user = { id: row.ID, name: row.NAME, password: row.PASSWORD, email: row.EMAIL };
+                users.push({ id: row.ID, userID: row.USERID, channelID: row.CHANNELID, 
+                    timeStamp: row.TIMESTAMP,message: row.MSG });
             },
             function(err) {
                 if(err) {
@@ -17,7 +18,7 @@ function getChannelMessageJSON(db, teamID,channelID) {
                     throw err;
                 }
                 else {
-                    resolve(JSON.stringify(user));
+                    resolve(JSON.stringify(users));
                 }
         });
     });
