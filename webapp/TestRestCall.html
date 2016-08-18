@@ -9,7 +9,7 @@
 			app.controller('myCtrl', function($scope, $http) {
 				$http.get("/rest/channel/chats/2")
 				.then(function(response) {
-					$scope.myWelcome = response.data.message;
+					$scope.msgJSON = angular.fromJson(response.data.message);
 				});
 				
 				
@@ -18,7 +18,8 @@
 
 	</head>
 	<body ng-controller="myCtrl">
-		<h1>Here is the list of Messages:{{myWelcome}}</h1>
+		<h1>Here is the list of Messages</h1>
+		<h1 ng-repeat="localMsg in msgJSON">{{localMsg.message}}</h1>
 		
 	</body>
 </html>
