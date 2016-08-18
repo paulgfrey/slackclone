@@ -1,4 +1,5 @@
 slackCloneApp.controller("channelPostCtrl", function($scope, $http) {
+    /*
    $scope.user = {
       firstName: "Mahesh",
       lastName: "Parashar",
@@ -18,4 +19,5 @@ slackCloneApp.controller("channelPostCtrl", function($scope, $http) {
          return studentObject.firstName + " " + studentObject.lastName;
       }
    };
+   */
 });
