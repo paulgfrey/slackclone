@@ -1,0 +1,32 @@
+.mainBody
+{
+	height: 95%;
+	width: 95%;
+}
+.team
+{
+	width: 30%;
+	height: 95%;
+	float: left;
+	border:5px solid cyan;
+}
+.channels 
+{
+	width: 95%;
+	height: 95%;
+	border:5px solid cyan;
+}
+ .channelPostMessage
+{
+	position: relative;
+	bottom: 0px;
+	height: 50px;
+	border:5px solid cyan;
+}
+.channelMessages
+{
+	width: 60%;
+	height: 95%;
+	float: right;
+	border:5px solid cyan;
+}​
