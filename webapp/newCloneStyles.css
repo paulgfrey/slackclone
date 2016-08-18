@@ -1,0 +1,32 @@
+#MessagePannel{
+	border-style: solid; 
+	border-color: green;
+	overflow-y: scroll;
+	max-height: 500px;
+	margin: 2%;
+}
+
+#TeamPannel{
+	border-style: solid; 
+	border-color: red;
+	margin: 2%;
+}
+
+#ChannelPannel{
+	border-style: solid; 
+	border-color: black;
+	overflow-y: scroll;
+	max-height: 500px;
+	margin: 2%;
+}
+
+#InputMessagePannel{
+	border-style: solid;
+	border-color: purple;
+	margin: 2%;	
+}
+
+#Header{
+	text-align: center;
+	margin: 2%;
+}
