@@ -1,7 +1,17 @@
 slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, service) {
   console.log('mainCtrl');
+  /* STILL WORKING ON THIS
+  if(! $rootScope.user) {
+    var userId = service.getSavedUserId();
+    if(userId) {
+      service.getUser(userId, function(user) {
+        $rootScope.user = user;
+      });
+    }
+  }
+  */
   if ($rootScope.user) {
-    $location.path("/messages/" + service.getCurrentChannel().id);
+    $location.path("/messages");
   }
   else {
     $location.path("/login");

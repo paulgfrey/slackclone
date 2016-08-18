@@ -1,8 +1,8 @@
 slackCloneApp.factory('service', function ($http, $rootScope) {
     return {
         getUser: function (userId, callback) {
-            $http.get('/rest/user/' + userId).success(function (data) {
-                callback(data);
+            $http.get('/rest/user/' + userId).success(function (user) {
+                callback(user);
             });
         },
         getUserByLogin: function (_name, _password, callback) {
@@ -51,5 +51,16 @@ slackCloneApp.factory('service', function ($http, $rootScope) {
                 callback(msgId);
             });
         },
+        saveUserId: function(userId) {
+            document.cookie = "userid=" + userId + ";"; 
+        },
+        getSavedUserId: function() {
+            var rtnId;
+            if (document.cookie) {
+                rtnId= document.cookie.split(";")[0].split("=")[1];
+            }
+
+            return rtnId;            
+        }
     };
 });
