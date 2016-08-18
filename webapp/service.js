@@ -1,15 +1,55 @@
-var stackCloneApp = angular.module("stackCloneApp", []);
-stackCloneApp.factory('service', function($http) {
-    var user;
+slackCloneApp.factory('service', function ($http, $rootScope) {
     return {
-        getUser: function () {
-            if(! user) {
-                // show login dialog
-                // Hard code for now
-                user = { id: 1, name: "PAUL", password: "QWEWRER", email: "BRRTTS@GMAIL.COM" };
-            }
-            return(user);
-        }
+        getUser: function (userId, callback) {
+            $http.get('/rest/user/' + userId).success(function (data) {
+                callback(data);
+            });
+        },
+        getUserByLogin: function (_name, _password, callback) {
+            var req = {
+                method: 'POST',
+                url: '/rest/login',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({ name: _name, password: _password })
+            };
+            $http(req).success(function (data) {
+                callback(data);
+            });
+        },
+        getFirstChannel: function (teamId, userId, callback) {
+            $http.get('/rest/team/channels/' + teamId + '/' + userId).success(function (channels) {
+                var channel = channels[0];
+                callback(channel);
+            });
+        },
+        getFirstTeam: function (userId, callback) {
+            $http.get('/rest/team/user/' + userId).success(function (teams) {
+                var team = teams[0];
+                callback(team);
+            });
+        },
+        getMsgs: function(channelId, callback) {
+            $http.get('/rest/channel/chats/' + channelId).success(function (messages) {
+                callback(messages);
+            });
+        },
+        getChannels: function(teamId, callback) {
+
+        },
+        postMsg: function (channelId, userId, _msg, callback) {
+            var req = {
+                method: 'POST',
+                url: '/rest/channel/chats/' + channelId + '/' + userId,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: JSON.stringify({ msg: _msg })
+            };
+            $http(req).success(function (msgId) {
+                callback(msgId);
+            });
+        },
     };
 });
-   

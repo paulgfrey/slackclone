@@ -9,10 +9,9 @@ function getChannelByTeamAndUser(req, res) {
 
     var conn = dbHandler.getDbConn();
 
-    var teamid = req.params.teamid;
-    var userid = req.params.userid;
-    //messageHandler.addChannelMessage(conn, channelId, userId, msg)
-    ChannelHandler.getChannelByTeamAndUser(conn, userid, teamid)
+    var teamId = req.params.teamId;
+    var userId = req.params.userId;
+    ChannelHandler.getChannelByTeamAndUser(conn, userId, teamId)
         .then(
         (channels) => {
             // res.send({ id:id,name:name,teamid:teamid,description:description,tyep:tyep}); 

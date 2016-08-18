@@ -22,6 +22,29 @@ function getUserProfileJSON(db, userId) {
     });
 }
 
+exports.getUserByNamePassword = getUserByNamePassword;
+function getUserByNamePassword(db, name, password) {
+    return(new Promise((resolve, reject) => {
+        var query = "SELECT * from USERS "
+                    + "WHERE name = ? and password = ?";
+        var user;
+        db.each(query, name, password,
+            function(err, row) {
+                user = {id: row.ID, name: row.NAME, password: row.PASSWORD, email: row.EMAIL};
+            },
+            function(err) {
+                if(err) {
+                    reject(err);
+                    throw(err);
+                }
+                else {
+                    resolve(JSON.stringify(user));
+                }
+            });
+    }
+    ));
+}
+
 exports.createUserProfile = createUserProfile;
 function createUserProfile(db, name, password, email) {
     // TODO Need to return ID from DB.

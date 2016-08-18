@@ -1,48 +1,45 @@
-<html ng-app="stackCloneApp">
-  <head>
-    <meta charset="utf-8">
-    <title>Stack Clone</title>
-	<link rel="stylesheet" type="text/css" href="cloneStyles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.min.js"></script>
-    <script src="channelPostCtrl.js"></script>
-    <script src="channelMsgsCtrl.js"></script>
-    <script src="teamCtrl.js"></script>
-    <script src="channelCtrl.js"></script>
-    <script src="service.js"></script>
-    <script>
-    var stackCloneApp = angular.module("stackCloneApp", []);
-      storeApp.config(function($routeProvider) {
+<html ng-app="slackCloneApp">
+
+<head>
+  <meta charset="utf-8">
+  <title>Stack Clone</title>
+	<link rel="stylesheet" type="text/css" href="newCloneStyles.css">
+  <link href="bootstrap.css" rel="stylesheet" />
+  <link href="bootstrap-theme.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="cloneStyles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.js"></script>
+  <script>
+    var slackCloneApp = angular.module("slackCloneApp", ['ngRoute']);
+      slackCloneApp.config(function($routeProvider) {
         $routeProvider.
           when('/', {
             templateUrl: 'index.html',
             controller: 'mainCtrl'
           }).
-          when('/team', {
-            templateUrl: 'team.html',
-            controller: 'teamCtrl'
+          when('/login', {
+            templateUrl: 'loginTemplate.html',
+            controller: 'loginCtrl'
           }).
-          when('/channel', {
-            templateUrl: 'channel.html',
-            controller: 'channelCtrl'
-          }).
-          when('/channelMsgs', {
-            templateUrl: 'channelMsgs.html',
+          when('/messages', {
+            templateUrl: 'channelsTemplate.html',
             controller: 'channelMsgsCtrl'
-          }).
-          when('/channelPost', {
-            templateUrl: 'channelPost.html',
-            controller: 'channelPostCtrl'
           }).
          otherwise({
             redirectTo: '/'
           });
       });
     </script>
-  </head>
-  <body ng-app>
-    <div ng-view>
+  <script src="channelsCtrl.js"></script>
+  <script src="channelMsgsCtrl.js"></script>
+  <script src="service.js"></script>
+  <script src="mainCtrl.js"></script>
+</head>
 
-    </div>
-  </body>
+<body ng-app ng-controller="mainCtrl">
+  <div ng-view>
+
+  </div>
+</body>
+
 </html>

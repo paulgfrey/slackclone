@@ -3,8 +3,8 @@ var channelHandler = require('./channelHandler.js');
 
 var dbHandler = require('./dbHandler.js');
 
-exports.getChannelMessage = getChannelMessage;
-function getChannelMessage(req, res) {
+exports.getChannelMessages = getChannelMessages;
+function getChannelMessages(req, res) {
     console.log('Obtaining the Channel Message');
 
     var conn = dbHandler.getDbConn();
@@ -13,10 +13,10 @@ function getChannelMessage(req, res) {
     console.log('Channel id is: '+ returnedChannelId);
 
 
-    channelHandler.getChannelMessageJSON(conn,returnedChannelId)
+    channelHandler.getChannelMessagesJSON(conn,returnedChannelId)
     .then(
-        (msgContent) => {
-            res.send({ message: msgContent });
+        (messages) => {
+            res.send(messages);
         }
     )
     .catch(function(err) {
