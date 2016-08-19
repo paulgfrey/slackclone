@@ -1,20 +1,51 @@
 slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, service) {
   console.log('mainCtrl');
-  /* STILL WORKING ON THIS
-  if(! $rootScope.user) {
-    var userId = service.getSavedUserId();
-    if(userId) {
-      service.getUser(userId, function(user) {
-        $rootScope.user = user;
+
+  $scope.handleUserInit = function (user) {
+    service.getFirstTeam(user.id)
+      .then((team) => {
+        if (!team) {
+          alert('No team found for user ID ' + user.id + '!');
+        }
+        else {
+          service.getFirstChannel(team.id, user.id)
+            .then((channel) => {
+              $rootScope.team = team;
+              $rootScope.channel = channel;
+              if (team && channel) {
+                service.saveUserId(user.id);
+                $location.path('/messages');
+                $scope.$apply();
+              }
+              else {
+                alert('No channel found for user ID ' + user.id + '!');
+              }
+            },
+            (err) => {
+              alert(err);
+            });
+        }
+      },
+      (err) => {
+        alert(err);
       });
-    }
   }
-  */
+
+  alert('got here');
   if ($rootScope.user) {
-    $location.path("/messages");
+    // see if the cookie exists()
+    //var userId = service.getSavedUserId();
+    //if (userId) {
+      var user = $rootScope.user;
+      service.getUser(userId)
+        .then((user) => {
+          $rootScope.user = user;
+          $scope.handleUserInit($rootScope.user);
+        });
+    //}
   }
   else {
-    $location.path("/login");
+    $location.path('/login');
   }
 });
 
@@ -25,32 +56,8 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
       .then((user) => {
         $rootScope.user = user;
         if ($rootScope.user) {
-          service.getFirstTeam(user.id)
-            .then((team) => {
-              if (!team) {
-                alert('No team found for user ID ' + user.id + '!');
-              }
-              else {
-                service.getFirstChannel(team.id, user.id)
-                  .then((channel) => {
-                    $rootScope.team = team;
-                    $rootScope.channel = channel;
-                    if (team && channel) {
-                      $location.path('/messages');
-                      $scope.$apply();
-                    }
-                    else {
-                      alert('No channel found for user ID ' + user.id + '!');
-                    }
-                  },
-                  (err) => {
-                    alert(err);
-                  });
-              }
-            },
-            (err) => {
-              alert(err);
-            });
+          $scope.handleUserInit($rootScope.user);
+          location("/messages");
         }
         else {
           alert('Invalid login!');

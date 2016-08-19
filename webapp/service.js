@@ -91,14 +91,18 @@ slackCloneApp.factory('service', function ($http, $rootScope) {
             });
         },
         saveUserId: function(userId) {
-            document.cookie = "userid=" + userId + ";"; 
+            document.cookie = "userId=" + userId + ";"; 
         },
         getSavedUserId: function() {
             var rtnId;
             if (document.cookie) {
-                rtnId= document.cookie.split(";")[0].split("=")[1];
+                // Get name followed by anything except a semicolon
+                var cookiestring=RegExp("userId[^;]+").exec(document.cookie);
+                // Return everything after the equal sign
+                if(cookiestring) {
+                    rtnId = unescape(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
+                }
             }
-
             return rtnId;            
         }
     };
