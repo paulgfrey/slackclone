@@ -4,12 +4,14 @@
 	overflow-y: scroll;
 	max-height: 500px;
 	margin: 2%;
+	text-align: center;
 }
 
 #TeamPannel{
 	border-style: solid; 
 	border-color: red;
 	margin: 2%;
+	text-align: center;
 }
 
 #ChannelPannel{
@@ -18,12 +20,14 @@
 	overflow-y: scroll;
 	max-height: 500px;
 	margin: 2%;
+	text-align: center;
 }
 
 #InputMessagePannel{
 	border-style: solid;
 	border-color: purple;
 	margin: 2%;	
+	text-align: center;
 }
 
 #Header{
