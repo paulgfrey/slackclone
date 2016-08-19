@@ -30,4 +30,3 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
      */
     });
 });
-

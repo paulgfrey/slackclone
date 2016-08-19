@@ -1,8 +1,12 @@
-<div>
-    <form novalidate>
-        Please Login<BR>
-        User Name: <input type="TEXT" ng-model="name"/><BR>
-        Password: <input type="password" ng-model="password"/><BR>
-        <input type="submit" ng-click="login($scope.name, $scope.password)" value="Login" />
+<link href="login.css" rel="stylesheet" />
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <h1 align="center">Slack Clone</h1>
+      <input type="text" placeholder="username" ng-model="name"/>
+      <input type="password" placeholder="password" ng-model="password"/>
+      <button ng-click="login($scope.name, $scope.password)">login</button>
+      Remember<input type="checkbox" ng-model="remember"/>
     </form>
+  </div>
 </div>

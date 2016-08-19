@@ -1,7 +1,8 @@
 slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, service) {
   console.log('mainCtrl');
 
-  $scope.handleUserInit = function (user) {
+
+  $scope.handleUserInit = function (user, remember) {
     service.getFirstTeam(user.id)
       .then((team) => {
         if (!team) {
@@ -13,7 +14,12 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
               $rootScope.team = team;
               $rootScope.channel = channel;
               if (team && channel) {
-                service.saveUserId(user.id);
+                if(remember) {
+                  service.saveUserId(user.id);
+                }
+                else {
+                  service.removeSavedUserId();
+                }
                 $location.path('/messages');
                 $scope.$apply();
               }
@@ -44,12 +50,20 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
 
 slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, service) {
   console.log('loginCtrl');
+  if($rootScope.user) {
+    $scope.name = $rootScope.user.name;
+  }
+  if(service.getSavedUserId()) {
+    $scope.remember = true;
+  }
+
   $scope.login = function () {
+    var remember = $scope.remember;
     service.getUserByLogin($scope.name, $scope.password)
       .then((user) => {
         $rootScope.user = user;
         if ($rootScope.user) {
-          $scope.handleUserInit($rootScope.user);
+          $scope.handleUserInit($rootScope.user, remember);
         }
         else {
           alert('Invalid login!');
