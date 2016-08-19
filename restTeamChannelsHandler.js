@@ -3,15 +3,15 @@
 var ChannelHandler = require("./teamHandler.js");
 var dbHandler = require('./dbHandler.js');
 //var db = new sqlite3.Database('testslackclone.db');
-exports.getChannelByTeamAndUser = getChannelByTeamAndUser;
-function getChannelByTeamAndUser(req, res) {
-    console.log('getChannelByTeamAndUser()');
+exports.getChannelsByTeamAndUser = getChannelsByTeamAndUser;
+function getChannelsByTeamAndUser(req, res) {
+    console.log('getChannelsByTeamAndUser()');
 
     var conn = dbHandler.getDbConn();
 
     var teamId = req.params.teamId;
     var userId = req.params.userId;
-    ChannelHandler.getChannelByTeamAndUser(conn, userId, teamId)
+    ChannelHandler.getChannelsByTeamAndUser(conn, userId, teamId)
         .then(
         (channels) => {
             // res.send({ id:id,name:name,teamid:teamid,description:description,tyep:tyep}); 

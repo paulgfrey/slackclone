@@ -30,38 +30,7 @@
 		<div class="container-fluid">
 			<div class="row col-md-8">
 				<div ng-controller="channelMsgsCtrl" id="MessagePannel">
-					<h2>I'm the Message Pannel</h2>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-										<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-										<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-										<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-										<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-										<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-
+					<p ng-repeat="message in messages track by $index">{{message.message}}</p>
 				</div>
 				<div id="InputMessagePannel">
 					<h2>I'm the input Message Pannel</h2>
