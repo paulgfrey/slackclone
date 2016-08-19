@@ -1,0 +1,29 @@
+<html ng-app="slackclone">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
+ <script>
+	slackClone.controller('channelCtrl', function ($rootScope, $scope, service) {
+ 
+  var userId = req.params.userId;
+  var teamId = req.params.teamId;
+  $scope.channels [] = function () {
+    service.getChannelByTeamAndUser(userId, teamId )
+	{
+      $rootScope.channels[] = channels[];
+     });
+	  console.log(channels[]);
+  };
+});
+</script);
+  </head>
+  <body ng-controller="ChannelCtrl">
+    <ul>
+	
+		<li ng-repeat="channel in channels">  <a href="#/{{channel}}">{{channel}}</a> </li>
+
+		<!--<li ng-repeat="channel in channels">{{channel.name}} - UserId {{channel.userId}}</li>-->
+    </ul>
+  </body>
+</html>
