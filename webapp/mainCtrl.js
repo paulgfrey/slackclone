@@ -31,22 +31,15 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
       });
   }
 
-  alert('got here');
-  if ($rootScope.user) {
-    // see if the cookie exists()
-    //var userId = service.getSavedUserId();
-    //if (userId) {
-      var user = $rootScope.user;
+  var userId = service.getSavedUserId();
+  if(userId) {
       service.getUser(userId)
         .then((user) => {
           $rootScope.user = user;
           $scope.handleUserInit($rootScope.user);
         });
-    //}
   }
-  else {
-    $location.path('/login');
-  }
+  $location.path('/login');
 });
 
 slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, service) {
@@ -57,7 +50,6 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
         $rootScope.user = user;
         if ($rootScope.user) {
           $scope.handleUserInit($rootScope.user);
-          location("/messages");
         }
         else {
           alert('Invalid login!');
