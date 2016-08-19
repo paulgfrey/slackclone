@@ -1,6 +1,8 @@
 <div>
-    Please Login<BR>
-    User Name: <input type="TEXT" ng-model="name"/><BR>
-    Password: <input type="password" ng-model="password"/><BR>
-    <button type="button" ng-click="login($scope.name, $scope.password)">Login</button>
+    <form novalidate>
+        Please Login<BR>
+        User Name: <input type="TEXT" ng-model="name"/><BR>
+        Password: <input type="password" ng-model="password"/><BR>
+        <input type="submit" ng-click="login($scope.name, $scope.password)" value="Login" />
+    </form>
 </div>

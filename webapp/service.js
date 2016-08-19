@@ -1,42 +1,81 @@
 slackCloneApp.factory('service', function ($http, $rootScope) {
     return {
-        getUser: function (userId, callback) {
-            $http.get('/rest/user/' + userId).success(function (data) {
-                callback(data);
-            });
-        },
-        getUserByLogin: function (_name, _password, callback) {
-            var req = {
-                method: 'POST',
-                url: '/rest/login',
-                headers: {
-                    'Content-Type': 'application/json'
+        getUser: function (userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/user/' + userId)
+                .then(function (response) {
+                    resolve(response.data);
                 },
-                data: JSON.stringify({ name: _name, password: _password })
-            };
-            $http(req).success(function (data) {
-                callback(data);
+                function (response) {
+                    reject('HTTP error ' + response.statusText);
+                }
+                );
             });
         },
-        getFirstChannel: function (teamId, userId, callback) {
-            $http.get('/rest/team/channels/' + teamId + '/' + userId).success(function (channels) {
-                var channel = channels[0];
-                callback(channel);
+        getUserByLogin: function (_name, _password) {
+            return new Promise((resolve, reject) => {
+                var req = {
+                    method: 'POST',
+                    url: '/rest/login',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({ name: _name, password: _password })     
+                }
+                $http(req)
+                .then(function(response) {
+                    resolve(response.data);
+                },
+                function (resposne) {
+                    reject('HTTP error ' + response.statusText);
+                });
             });
         },
-        getFirstTeam: function (userId, callback) {
-            $http.get('/rest/team/user/' + userId).success(function (teams) {
-                var team = teams[0];
-                callback(team);
+        getFirstChannel: function (teamId, userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/team/channels/' + teamId + '/' + userId)
+                .then(function (response) {
+                    var channel = response.data[0];
+                    resolve(channel);
+                },
+                function(response) {
+                    reject('HTTP error ' + response.statusText);
+                });
             });
         },
-        getMsgs: function(channelId, callback) {
-            $http.get('/rest/channel/chats/' + channelId).success(function (messages) {
-                callback(messages);
+        getFirstTeam: function (userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/team/user/' + userId)
+                .then(function (response) {
+                    var team = response.data[0];
+                    resolve(team);
+                },
+                function(response) {
+                    reject('HTTP error ' + response.statusText);
+                });
             });
-        },
-        getChannels: function(teamId, callback) {
-
+        },            
+        getMsgs: function(channelId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/channel/chats/' + channelId)
+                .then(function (response) {
+                    resolve(response.data);
+                },
+                function(response) {
+                    reject('HTTP error ' + response.statusText);
+                });
+            });
+        }, 
+        getChannels: function(teamId, userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/team/channels/'+ teamId + '/' + userId)
+                .then(function (response) {
+                    resolve(response.data);
+                },
+                function(response) {
+                    reject('HTTP error ' + response.statusText);
+                });
+            });
         },
         postMsg: function (channelId, userId, _msg, callback) {
             var req = {
@@ -51,5 +90,16 @@ slackCloneApp.factory('service', function ($http, $rootScope) {
                 callback(msgId);
             });
         },
+        saveUserId: function(userId) {
+            document.cookie = "userid=" + userId + ";"; 
+        },
+        getSavedUserId: function() {
+            var rtnId;
+            if (document.cookie) {
+                rtnId= document.cookie.split(";")[0].split("=")[1];
+            }
+
+            return rtnId;            
+        }
     };
 });

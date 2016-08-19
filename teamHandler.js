@@ -24,8 +24,8 @@ function getTeamByUserIDJSON(db, USERID) {
     });
 }
 
-exports.getChannelByTeamAndUser = getChannelByTeamAndUser;
-function getChannelByTeamAndUser(db, userId, teamId) {
+exports.getChannelsByTeamAndUser = getChannelsByTeamAndUser;
+function getChannelsByTeamAndUser(db, userId, teamId) {
 
     return new Promise((resolve, reject) => {
         var query = " Select 	C1.*   from Channel C1, TeamUsers TU1 " +
@@ -43,7 +43,7 @@ function getChannelByTeamAndUser(db, userId, teamId) {
                     throw err;
                 }
                 else {
-                    console.log('getChannelByTeamAndUser()=' + JSON.stringify(channels));
+                    console.log('getChannelsByTeamAndUser()=' + JSON.stringify(channels));
                     resolve(JSON.stringify(channels));
                 }
         });

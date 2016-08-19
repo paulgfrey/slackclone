@@ -29,12 +29,12 @@ describe('Test teamHandler', () => {
    });
 
 
-    it('#2 getChannelByTeamAndUser', (done) => {
+    it('#2 getChannelsByTeamAndUser', (done) => {
         var userId = 1;
         var teamid = 1;
         var channels = [{  id: 1, name:"shuvo", teamId: 1, description: "description for shuvo",type:"Private" } ];
         var expected = JSON.stringify(channels);
-        ChannelHandler.getChannelByTeamAndUser(db, userId,teamid)
+        ChannelHandler.getChannelsByTeamAndUser(db, userId,teamid)
             .should.eventually.equal(expected).notify(done);
    });
 });
