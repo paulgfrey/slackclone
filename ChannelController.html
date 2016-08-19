@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<body ng-app="">
+
+<div ng-app="slackclone" ng-controller="channelCtrl"> 
+
+<ul>
+  <li ng-repeat="x in myData">
+    {{ x.channels }}
+  </li>
+</ul>
+
+</div>
+
+<script>
+ var app = angular.module('slackclone', []);
+app.controller('channelCtrl', function($scope, $http) {
+          
+	  var data []= '[
+	  {"Channel":"Channel-1"},
+	  {"Channel":"Channel-2"},
+	  {"Channel":"Channel-3"}
+	  ];
+	   $scope.myData[] = data;  //response.data.records;
+    
+}); 
+
+</script>
+
+
+  <div ng-view></div>
+  </body>
+</html>
