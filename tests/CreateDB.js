@@ -106,10 +106,10 @@ function createDB() {
                 "('team5')";
 
             var insertUSERSTableSql = "INSERT INTO USERS (NAME, PASSWORD, EMAIL) " +
-                "VALUES ('shuvo', 'QWEWRER', 'BLASHS@GMAIL.COM')," +
-                "('GREG', 'QWEWRER',  'RTERE@GMAIL.COM')," +
-                "('PAUL', 'QWEWRER', 'BRRTTS@GMAIL.COM')," +
-                "( 'JASON', 'QWEWRER', 'BRTRRTS@GMAIL.COM')";
+                "VALUES ('shuvo', 'shuvo', 'BLASHS@GMAIL.COM')," +
+                "('greg', 'greg',  'RTERE@GMAIL.COM')," +
+                "('paul', 'paul', 'BRRTTS@GMAIL.COM')," +
+                "( 'jason', 'jason', 'BRTRRTS@GMAIL.COM')";
 
             var insertChannelTableSql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION,TYPE) " +
                 "VALUES ('Channel-1: Apples', 1, 'Channel 1 is about apples','Public')," +
