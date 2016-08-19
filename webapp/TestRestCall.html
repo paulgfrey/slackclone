@@ -10,6 +10,7 @@
 				$http.get("/rest/channel/chats/2")
 				.then(function(response) {
 					$scope.msgJSON = angular.fromJson(response.data.message);
+					console.log($scope.msgJSON);
 				});
 				
 				
