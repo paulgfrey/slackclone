@@ -4,7 +4,7 @@
 	overflow-y: scroll;
 	max-height: 500px;
 	margin: 2%;
-	text-align: center;
+	/*text-align: center;*/
 }
 
 #TeamPannel{
@@ -33,4 +33,15 @@
 #Header{
 	text-align: center;
 	margin: 2%;
+}
+
+#msgTimeSpan{
+	font-size: 0.5em;
+	font: italic bold Georgia, serif;
+	color:grey;
+}
+
+#userName{
+	font: bold;
+	font-size: 2em;
 }

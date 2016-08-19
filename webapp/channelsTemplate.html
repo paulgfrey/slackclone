@@ -1,57 +1,44 @@
-    <div class="page-header" id="Header">
-        <h1>Slack Clone</h1>
-		
-    </div>
-	
-	<div ng-controller="channelsCtrl">
-		<div class="container-fluid">
-			<div class="row col-md-4">
-				<div id="TeamPannel">
-					<h2>Teams</h2>
-					<p><a href="">{{team.name}}</a></p>
-				</div>
-				<div id="ChannelPannel">
-					<h2>I'm the Channel Container</h2>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-					<p> I'm another row in the pannel</p>
-				</div>
-	`	</div>
-		
-		<div class="container-fluid">
-			<div class="row col-md-8">
-				<div ng-controller="channelMsgsCtrl" id="MessagePannel">
-					<p ng-repeat="message in messages track by $index">{{message.message}}</p>
-				</div>
-				<div id="InputMessagePannel">
-					<h2>I'm the input Message Pannel</h2>
-				</div>
-			</div>
-		</div>
-	</div>
-<script>
-    /*
-<div ng-controller="channelsCtrl" class="team">
-    <div>
-        <!-- BOB -->
-        <!-- TeamName -->
-        <!-- Channel List -->
-    </div>
-    <div ng-controller="channelMsgsCtrl" class="channelMessages">
-        <!-- JOSEPH -->
-        <!-- Channel Message -->
-        <li ng-repeat="message in messages track by $index">{{ message.message }}
-        <!-- Message Post -->
+<div class="page-header" id="Header">
+    <h1>Slack Clone</h1>
+
+</div>
+
+<div ng-controller="channelsCtrl">
+    <div class="container-fluid">
+        <div class="row col-md-4">
+            <div id="TeamPannel">
+                <h2>Teams</h2>
+                <p><a href="">{{team.name}}</a></p>
+            </div>
+            <div id="ChannelPannel">
+                <h2>I'm the Channel Container</h2>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+                <p> I'm another row in the pannel</p>
+            </div>
+            ` </div>
+
+        <div class="container-fluid">
+            <div class="row col-md-8">
+                <div id="MessagePannel">
+                    <div ng-repeat="message in messages | orderBy:message.timeStamp">
+                        <h3 display="block" id="userName">{{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
+                        </h4>
+
+                        <h4> {{message.message}} </h4>
+                    </div>
+                </div>
+                <div id="InputMessagePannel">
+                    <h2>I'm the input Message Pannel</h2>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-*/
-</script>
-
-
