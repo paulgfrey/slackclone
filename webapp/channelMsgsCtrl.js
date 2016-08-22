@@ -1,7 +1,9 @@
 slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $location, $timeout, service) {
+  $scope.glued = true;
   $scope.updateMessagePanel = function () {
     service.getMsgs($rootScope.channel.id)
       .then((messages) => {
+        $scope.messages = [];
         //var tempMessageList = []; 
         for (var i = 0; i < messages.length; i++) {
           console.log("Message's User ID: " + messages[i].userId);
@@ -17,6 +19,10 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
                 message: messages[j].message
               });
               $scope.$apply();
+              
+              /*var msgBox = document.getElementById('MessagePannel');
+              var pxl = msgBox.scrollHeight;
+              msgBox.scrollTop = pxl;*/
             });
           })();
 

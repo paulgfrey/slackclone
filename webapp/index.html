@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8">
   <title>Stack Clone</title>
-	<link rel="stylesheet" type="text/css" href="newCloneStyles.css">
+  <link rel="stylesheet" type="text/css" href="newCloneStyles.css">
   <link href="bootstrap.css" rel="stylesheet" />
   <link href="bootstrap-theme.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="cloneStyles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-cookies.js"></script>
+  <script src="https://cdn.rawgit.com/Luegg/angularjs-scroll-glue/master/src/scrollglue.js"></script>
   <script>
-    var slackCloneApp = angular.module("slackCloneApp", ['ngRoute', 'ngCookies']);
+    var slackCloneApp = angular.module("slackCloneApp", ['ngRoute', 'ngCookies','luegg.directives']);
       slackCloneApp.config(function($routeProvider) {
         $routeProvider.
           when('/', {
@@ -30,6 +31,22 @@
             redirectTo: '/'
           });
       });
+ slackCloneApp.directive('ngScrollBottom', ['$timeout', function ($timeout) {
+  return {
+    scope: {
+      ngScrollBottom: "="
+    },
+    link: function ($scope, $element) {
+      $scope.$watchCollection('ngScrollBottom', function (newValue) {
+        if (newValue) {
+          $timeout(function(){
+            $element.scrollTop($element[0].scrollHeight);
+          }, 0);
+        }
+      });
+    }
+  }
+}]);
     </script>
   <script src="channelsCtrl.js"></script>
   <script src="channelMsgsCtrl.js"></script>

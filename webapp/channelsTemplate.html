@@ -27,7 +27,7 @@
 
         <div class="container-fluid">
             <div class="row col-md-8">
-                <div id="MessagePannel">
+                <div id="MessagePannel" scroll-glue-bottom="glued">
                     <div ng-repeat="message in messages | orderBy:message.timeStamp">
                         <h3 display="block" id="userName">{{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
                         </h4>
