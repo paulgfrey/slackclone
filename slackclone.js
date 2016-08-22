@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // /rest/channel/chats/msg/<channelID>/<userID>?msg= (POST) (public)
-app.post('/rest/channel/chats', restMessageHandler.postChannelMessage);
+app.post('/rest/channel/chats/msg/:channelId/:userId', restMessageHandler.postChannelMessage);
 
 // /rest/channel/chats/<channelID> json list of chat messages for channel (GET)
 app.get('/rest/channel/chats/:channelID', restChannelHandler.getChannelMessages);
