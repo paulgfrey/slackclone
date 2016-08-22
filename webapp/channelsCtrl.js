@@ -6,8 +6,7 @@ service.getChannels($rootScope.team.id,$rootScope.user.id)
   });
 
 $scope.setCurrentChannel = function (teamId, userId, channelId) {
-    
-        console.log(channelId);
+  console.log(channelId);
   service.getChannels($rootScope.team.id,$rootScope.user.id)
   .then((channels) => {
     $scope.channels = channels;
