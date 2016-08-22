@@ -1,4 +1,4 @@
-slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $location, service) {
+slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $location, $timeout, $route, service) {
   console.log('channelMsgsCtrl');
   $scope.messages = [];
   service.getMsgs($rootScope.channel.id)
@@ -23,13 +23,19 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
 
       }
     });
-    $scope.postMessage = function(newMessage){
-      console.log("Enterting Post Message: " + newMessage);
-      var channelId = $rootScope.channel.id;
-      var userId = $rootScope.user.id;
-      service.postMsg(channelId, userId, newMessage, function(){
-          console.log("In call back");
+  $scope.postMessage = function (newMessage) {
+    console.log("Enterting Post Message: " + newMessage);
+    var channelId = $rootScope.channel.id;
+    var userId = $rootScope.user.id;
+    service.postMsg(channelId, userId, newMessage, function () {
+      console.log("In call back");
+      $timeout(function () {
+        // Any code in here will automatically have an $scope.apply() run afterwards
+        console.log("in Timeout callback");
+        $route.reload();
+        // And it just works!
       });
-    }
-  
+    });
+  }
+
 });
