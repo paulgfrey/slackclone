@@ -22,11 +22,14 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
         })();
 
       }
-      //$scope.messages = messages;
-      //$scope.messages = tempMessageList;
-      /*  for(var j=0; j < messages.length; j++){
-          $scope.messages[j].userName = userList[j];
-        }
-     */
     });
+    $scope.postMessage = function(newMessage){
+      console.log("Enterting Post Message: " + newMessage);
+      var channelId = $rootScope.channel.id;
+      var userId = $rootScope.user.id;
+      service.postMsg(channelId, userId, newMessage, function(){
+          console.log("In call back");
+      });
+    }
+  
 });

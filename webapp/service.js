@@ -80,7 +80,7 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
         postMsg: function (channelId, userId, _msg, callback) {
             var req = {
                 method: 'POST',
-                url: '/rest/channel/chats/' + channelId + '/' + userId,
+                url: '/rest/channel/chats/msg/' + channelId + '/' + userId,
                 headers: {
                     'Content-Type': 'application/json'
                 },

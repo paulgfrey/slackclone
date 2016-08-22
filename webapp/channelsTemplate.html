@@ -36,12 +36,14 @@
                     </div>
                 </div>
                 <div id="InputMessagePannel">
-                    <div class="input-group">
-                        <input class="form-control" ng-model="newMessage">
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" ng-click="addNewMessage(newMessage)">Add</button>
-                        </span>
-                    </div>
+                    <form id="inputFormID">
+                        <div class="input-group">
+                            <input class="form-control" ng-model="newMessage">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" ng-click="postMessage(newMessage)">Add</button>
+                            </span>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
