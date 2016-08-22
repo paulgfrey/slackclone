@@ -5,6 +5,7 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
       .then((messages) => {
         $scope.messages = [];
         //var tempMessageList = []; 
+        $scope.messages = [];
         for (var i = 0; i < messages.length; i++) {
           console.log("Message's User ID: " + messages[i].userId);
           console.log("Message's content: " + messages[i].message);
@@ -19,14 +20,11 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
                 message: messages[j].message
               });
               $scope.$apply();
-              
-              /*var msgBox = document.getElementById('MessagePannel');
-              var pxl = msgBox.scrollHeight;
-              msgBox.scrollTop = pxl;*/
             });
           })();
 
         }
+        $scope.$apply();
       });
   }
 
@@ -46,4 +44,8 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
 
   $scope.messages = [];
   $scope.updateMessagePanel();
+  $scope.$on('ChannelChanged', function() {
+    $scope.updateMessagePanel();
+  });
+
 });
