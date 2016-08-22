@@ -8,8 +8,8 @@ function postChannelMessage(req, res) {
 
     var conn = dbHandler.getDbConn();
 
-    var channelId = req.param.channelId;
-    var userId = req.param.userId;
+    var channelId = req.params.channelId;
+    var userId = req.params.userId;
     var msg = req.body.msg;
 
     messageHandler.addChannelMessage(conn, channelId, userId, msg)
