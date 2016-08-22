@@ -39,6 +39,8 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
         $scope.updateMessagePanel();
       });
     });
+    $scope.newMessage = "";
+    document.getElementById("inputTextBox").value = "";
   }
   console.log('channelMsgsCtrl');
 
