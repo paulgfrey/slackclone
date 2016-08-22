@@ -1,11 +1,11 @@
-<link href="login.css" rel="stylesheet" />
-<div class="login-page">
+  <link href="login.css" rel="stylesheet" />
+  <div class="login-page">
   <div class="form">
-    <form class="login-form">
+    <form class="login-form" ng-submit="login();">
       <h1 align="center">Slack Clone</h1>
       <input type="text" placeholder="username" ng-model="name"/>
       <input type="password" placeholder="password" ng-model="password"/>
-      <button ng-click="login($scope.name, $scope.password)">login</button>
+      <input type="submit" value="Login"/>
       Remember<input type="checkbox" ng-model="remember"/>
     </form>
   </div>
