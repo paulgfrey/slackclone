@@ -7,10 +7,11 @@
   <link href="bootstrap.css" rel="stylesheet" />
   <link href="bootstrap-theme.css" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="cloneStyles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.10/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-cookies.js"></script>
   <script>
-    var slackCloneApp = angular.module("slackCloneApp", ['ngRoute']);
+    var slackCloneApp = angular.module("slackCloneApp", ['ngRoute', 'ngCookies']);
       slackCloneApp.config(function($routeProvider) {
         $routeProvider.
           when('/', {

@@ -1,4 +1,4 @@
-slackCloneApp.factory('service', function ($http, $rootScope) {
+slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
     return {
         getUser: function (userId) {
             return new Promise((resolve, reject) => {
@@ -91,22 +91,14 @@ slackCloneApp.factory('service', function ($http, $rootScope) {
             });
         },
         saveUserId: function(userId) {
-            document.cookie = "userId=" + userId + ";"; 
+            $cookie.put('userId', userId);
         },
         removeSavedUserId: function () {
             $cookies.remove('userId');
         },
         getSavedUserId: function() {
-            var rtnId;
-            if (document.cookie) {
-                // Get name followed by anything except a semicolon
-                var cookiestring=RegExp("userId[^;]+").exec(document.cookie);
-                // Return everything after the equal sign
-                if(cookiestring) {
-                    rtnId = unescape(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
-                }
-            }
-            return rtnId;            
+            return $cookies.get('userId');
+            //return rtnId;            
         }
     };
 });
