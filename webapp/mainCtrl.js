@@ -17,9 +17,6 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
                 if(remember) {
                   service.saveUserId(user.id);
                 }
-                else {
-                  service.removeSavedUserId();
-                }
                 $location.path('/messages');
                 $scope.$apply();
               }
@@ -64,6 +61,9 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
         $rootScope.user = user;
         if ($rootScope.user) {
           $scope.handleUserInit($rootScope.user, remember);
+          if(! remember) {
+            service.removeSavedUserId();
+          }
         }
         else {
           alert('Invalid login!');

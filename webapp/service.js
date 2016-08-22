@@ -91,7 +91,9 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
             });
         },
         saveUserId: function(userId) {
-            $cookie.put('userId', userId);
+            var expireDate = new Date();
+            expireDate.setDate(expireDate.getDate() + 1);
+            $cookies.put('userId', userId, {'expires': expireDate});
         },
         removeSavedUserId: function () {
             $cookies.remove('userId');
