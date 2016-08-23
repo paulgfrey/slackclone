@@ -18,8 +18,6 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
           if (msgFound) {
             continue;
           }
-          console.log("Message's User ID: " + messages[i].userId);
-          console.log("Message's content: " + messages[i].message);
           messages[i].timeStamp = new Date(messages[i].timeStamp);
           (function () {
             var j = i;
