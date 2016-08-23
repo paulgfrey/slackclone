@@ -6,7 +6,7 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
     service.getFirstTeam(user.id)
       .then((team) => {
         if (!team) {
-          alert('No team found for user ID ' + user.id + '!');
+          $scope.loginError = 'No team found for user ID ' + user.id + '!';
         }
         else {
           service.getFirstChannel(team.id, user.id)
@@ -21,16 +21,17 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
                 $scope.$apply();
               }
               else {
-                alert('No channel found for user ID ' + user.id + '!');
+                $scope.loginError = 'No channel found for user ID ' + user.id + '!';
               }
             },
             (err) => {
-              alert(err);
+              $scope.loginError = err;
             });
         }
+        $scope.$apply();
       },
       (err) => {
-        alert(err);
+        $scope.loginError = err;
       });
   }
 
@@ -66,11 +67,13 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
           }
         }
         else {
-          alert('Invalid login!');
+          $scope.loginError = ('Invalid login!');
+          $scope.$apply();
         }
       },
       (err) => {
-        alert(err);
+        $scope.loginError = (err);
+        $scope.apply();
       });
   }
 })
