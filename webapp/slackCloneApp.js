@@ -17,22 +17,7 @@ slackCloneApp.config(function ($routeProvider) {
             redirectTo: '/'
         });
 });
-slackCloneApp.directive('ngScrollBottom', ['$timeout', function ($timeout) {
-    return {
-        scope: {
-            ngScrollBottom: "="
-        },
-        link: function ($scope, $element) {
-            $scope.$watchCollection('ngScrollBottom', function (newValue) {
-                if (newValue) {
-                    $timeout(function () {
-                        $element.scrollTop($element[0].scrollHeight);
-                    }, 0);
-                }
-            });
-        }
-    }
-}]);
+
 /*
 TODO Not working
 slackCloneApp.filter('imageTag', function() {
