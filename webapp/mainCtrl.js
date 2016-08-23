@@ -9,6 +9,7 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
           $scope.loginError = 'No team found for user ID ' + user.id + '!';
         }
         else {
+          //Populate Channels Based on User Selecting the first team
           service.getFirstChannel(team.id, user.id)
             .then((channel) => {
               $rootScope.team = team;

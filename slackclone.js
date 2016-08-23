@@ -29,6 +29,7 @@ app.get('/rest/user/:userId', restUserHandler.getUser);
 app.post('/rest/login', restUserHandler.getUserByLogin);
 
 app.get('/rest/team/user/:userId', restTeamHandler.getTeamByUserIDJSON);
+app.get('/rest/teams/user/:userId', restTeamHandler.getTeamsByUserIDJSON);
 
 // /rest/team/channels/<teamID>/<userID>
 app.get('/rest/team/channels/:teamId/:userId', restTeamChannelsHandler.getChannelsByTeamAndUser);

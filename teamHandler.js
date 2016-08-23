@@ -24,6 +24,30 @@ function getTeamByUserIDJSON(db, USERID) {
     });
 }
 
+exports.getTeamsByUserIDJSON = getTeamByUserIDJSON;
+function getTeamsByUserIDJSON(db, USERID) {
+    return new Promise((resolve, reject) => {
+        var query = "Select T1.* from Team T1, TeamUsers TU1" +
+        " Where T1.ID = TU1.TEAMID " +
+	      "and TU1.USERID = ?";
+        var teams = [];
+        db.each(query, USERID,
+            function(err, row) {
+                teams.push({ id: row.ID, name: row.NAME });
+            },
+            function(err) {
+                if(err) {
+                    reject(err);
+                    throw err;
+                }
+                else {
+                    console.log('getTeamByUserIDJSON()=' + JSON.stringify(teams));
+                    resolve(JSON.stringify(teams));
+                }
+        });
+    });
+}
+
 exports.getChannelsByTeamAndUser = getChannelsByTeamAndUser;
 function getChannelsByTeamAndUser(db, userId, teamId) {
 

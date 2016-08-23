@@ -54,7 +54,21 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     reject('HTTP error ' + response.statusText);
                 });
             });
-        },            
+        },     
+        getTeams: function (userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/teams/user/' + userId)
+                    .then(function (response) {
+                        var teams = response.data;
+                        resolve(teams);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });
+        }, 
+
+
         getMsgs: function(channelId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/channel/chats/' + channelId)

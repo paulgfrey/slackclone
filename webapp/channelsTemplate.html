@@ -8,9 +8,13 @@
         <div class="row col-md-4">
             <div id="TeamPannel">
                 <h2>Teams</h2>
-                <p><a href="">{{team.name}}</a></p>
+                <ul ng-repeat="localTeam in teams">
+                    <li>
+                        <a href="" ng-click="setCurrentTeam(localTeam)">{{localTeam.name}}</a>
+                    </li>
+                </ul>
             </div>
-            <div id="ChannelPannel" ng-controller="channelsCtrl">
+            <div id="ChannelPannel">
                 <h2>I'm the Channel Container</h2>
 
                 <li ng-repeat="channel in channels"> <a href="" ng-click="setCurrentChannel(channel.teamId, user.id, channel.id)">{{channel.name}}</a> </li>

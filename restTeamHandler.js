@@ -18,3 +18,21 @@ function getTeamByUserIDJSON(req, res) {
         });
 
 }
+
+exports.getTeamsByUserIDJSON = getTeamsByUserIDJSON;
+function getTeamsByUserIDJSON(req, res) {
+    console.log('getTeamsByUserIDJSON()');
+
+    var conn = dbHandler.getDbConn();
+    var userId = req.params.userId;
+
+    teamlHandler.getTeamsByUserIDJSON(conn, userId)
+        .then(
+        (teams) => {
+            res.send(teams);
+        })
+        .catch(function (err) {
+            res.send({ error: err });
+        });
+
+}
