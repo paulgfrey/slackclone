@@ -76,6 +76,80 @@
 .container .info span .fa {
   color: #EF3B3A;
 }
+  .lbltitle{
+  height: 40px;
+   color:gold;
+   font-size: 65px;
+   font-family: Arial, Helvetica, sans-serif;
+  font-weight:bold;
+    border:10px width border-style black;
+   height:85px;
+   width: 375px;
+   background-color:cornflowerblue;
+   margin-top: -1%;
+    }
+
+    .divmsgs
+    {
+border-top-style: solid;
+border-color:lightblue ;
+
+    }
+    .msgdiv{     
+    background-color:silver;
+   width: 153%;
+   padding-left: 2%;
+  margin-bottom: 4%;
+
+    
+    }
+
+    
+    
+    .msgpan{     
+    background-color:silver;
+     border-radius: 25px;
+    
+    }
+     #rcorners1 {
+    border-radius: 25px;
+    background:silver;
+    padding: 20px;    
+    width: 55%;
+	height: 55%;
+  float: right;
+  margin-right: 7%;
+  
+
+	
+}
+
+ #lcorners {
+    border-radius: 25px;
+    background:silver;
+    padding-left:20px;    
+    width: 17%;
+	height: 75%;
+  float:left;
+  margin-right: 25%;
+  margin-bottom: 35%;
+  padding-bottom: 35%;
+	
+}
+
+.hdr{
+font-size:25px; font-weight:Bolder; color:gold; 
+
+}
+.pnlleft{
+  border-radius: 25px;
+    background:silver;
+   padding: 20px;  
+  width: 60%;
+	height: 55%;
+  float: LEFT;
+  margin-left:10%;
+}
 body {
   background: #76b852; /* fallback for old browsers */
   background: -webkit-linear-gradient(right, #76b852, #8DC26F);

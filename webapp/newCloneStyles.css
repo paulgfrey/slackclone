@@ -1,6 +1,6 @@
 #MessagePannel{
-	border-style: solid; 
-	border-color: green;
+	/*border-style: solid; 
+	border-color;*/
 	overflow-y: scroll;
 	min-height: 10%;
 	max-height: 500px;
@@ -10,25 +10,32 @@
 
 #TeamPannel{
 	border-style: solid; 
-	border-color: red;
+	border-color:silver;
 	margin: 2%;
 	text-align: center;
+	width: 25%;
+	font-size: 14px;
+	font-weight: bolder;
 }
 
 #ChannelPannel{
-	border-style: solid; 
-	border-color: black;
+	/*border-style: solid; 
+	border-color: black;*/
 	overflow-y: scroll;
 	max-height: 500px;
 	margin: 2%;
 	text-align: center;
+	width: 65%;
+	margin-top:20%;
 }
 
 #InputMessagePannel{
-	border-style: solid;
-	border-color: purple;
+	/*border-style: solid;
+	border-color: purple;*/
 	margin: 2%;	
 	text-align: center;
+	padding-top: 20%;
+
 }
 
 #Header{
@@ -45,4 +52,13 @@
 #userName{
 	font: bold;
 	font-size: 2em;
+}
+.Messageadd{
+margin-top: 2%;
+width: 35%;
+float: right;
+margin-left: 35%;
+margin-right: 17%;
+
+
 }

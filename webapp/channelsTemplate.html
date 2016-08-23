@@ -1,37 +1,58 @@
-<div class="page-header" id="Header">
-    <h1>Slack Clone</h1>
 
+<link href="login.css" rel="stylesheet" />
+<link href="newCloneStyles.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<div class="page-header" id="Header" class="msgdiv" >
+    <!--<h1 style="font-size:40px";><b >Slack Clone</b></h1 >-->
+   
+    <label id="lbltitle" class="lbltitle"> SlackClone </label>
+  
 </div>
 
-<div ng-controller="channelsCtrl">
+<div  ng-controller="channelsCtrl"   >
     <div class="container-fluid">
         <div class="row col-md-4">
-            <div id="TeamPannel">
-                <h2>Teams</h2>
+           <panel id="pnlleft" class="pnlleft">
+            <div id="TeamPannel" 
+                <h2 id="hdr" >Teams</h2>
                 <ul ng-repeat="localTeam in teams">
                     <li>
                         <a href="" ng-click="setCurrentTeam(localTeam)">{{localTeam.name}}</a>
                     </li>
                 </ul>
             </div>
-            <div id="ChannelPannel">
-                <h2>I'm the Channel Container</h2>
-
+            
+            <div id="ChannelPannel"  class="well" >
                 <li ng-repeat="channel in channels"> <a href="" ng-click="setCurrentChannel(channel.teamId, user.id, channel.id)">{{channel.name}}</a> </li>
             </div>
+            </panel> 
         </div>
-        <div class="container-fluid">
+      
+            
+            <panel id="rcorners1" class="well">
+        <div class="container-fluid, msgdiv" id="msgdiv">
             <div class="row col-md-8">
                 <div id="MessagePannel" scroll-glue-bottom="glued">
-                    <div ng-repeat="message in messages | orderBy:message.timeStamp">
+                    <div ng-repeat="message in messages | orderBy:message.timeStamp" id="divmsgs" class="divmsgs">
                         <h3 display="block" id="userName">{{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
                         </h4>
                         <h4> {{message.message}} </h4>
                     </div>
                 </div>
-                <div id="InputMessagePannel">
-                    <form id="inputFormID">
-                        <div class="input-group">
+
+                 
+                </panel>
+                
+            </div>
+        </div>
+       
+         
+    </div>
+            
+</div>
+<div  class="Messageadd" >
+                    <form id="inputFormID"  >
+                        <div class="input-group" >
                             <input class="form-control" ng-model="newMessage" id="inputTextBox">
                             <span class="input-group-btn">
                             <button class="btn btn-default" ng-click="postMessage(newMessage)">Add</button>
@@ -39,7 +60,3 @@
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
