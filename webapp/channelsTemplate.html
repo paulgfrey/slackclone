@@ -22,7 +22,6 @@
                     <div ng-repeat="message in messages | orderBy:message.timeStamp">
                         <h3 display="block" id="userName">{{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
                         </h4>
-
                         <h4> {{message.message}} </h4>
                     </div>
                 </div>
