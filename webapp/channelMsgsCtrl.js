@@ -15,25 +15,26 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
               msgFound = true;
             }
           }
-          if (! msgFound) {
-            console.log("Message's User ID: " + messages[i].userId);
-            console.log("Message's content: " + messages[i].message);
-            messages[i].timeStamp = new Date(messages[i].timeStamp);
-            (function () {
-              var j = i;
-              service.getUser(messages[j].userId).then((retrievedUserID) => {
-                console.log("Retrieved User Name is: " + retrievedUserID.name);
-                $scope.messages.push({
-                  id: messages[j].id,
-                  timeStamp: messages[j].timeStamp,
-                  userName: retrievedUserID.name,
-                  message: messages[j].message,
-                  displayed: true
-                });
-                $scope.$apply();
-              });
-            })();
+          if (msgFound) {
+            continue;
           }
+          console.log("Message's User ID: " + messages[i].userId);
+          console.log("Message's content: " + messages[i].message);
+          messages[i].timeStamp = new Date(messages[i].timeStamp);
+          (function () {
+            var j = i;
+            service.getUser(messages[j].userId).then((retrievedUserID) => {
+              console.log("Retrieved User Name is: " + retrievedUserID.name);
+              $scope.messages.push({
+                id: messages[j].id,
+                timeStamp: messages[j].timeStamp,
+                userName: retrievedUserID.name,
+                message: messages[j].message,
+                displayed: true
+              });
+              $scope.$apply();
+            });
+          })();
         }
         $scope.$apply();
       });
