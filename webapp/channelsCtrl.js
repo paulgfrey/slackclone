@@ -42,4 +42,22 @@ $scope.setCurrentChannel = function (teamId, userId, channelId) {
 
  $scope.updateChannels();
 
+ $scope.isTeamSelected = function(localTeam){
+    var returnString = "";
+    if(localTeam.name === $rootScope.team.name){
+      returnString = "selectedItem";
+    }
+    
+    return returnString;
+ }
+
+ $scope.isChannelSelected = function(channel){
+    var returnString = "";
+    if(channel.name === $rootScope.channel.name){
+      returnString = "selectedItem";
+    }
+    
+    return returnString;
+ }
+
 });
