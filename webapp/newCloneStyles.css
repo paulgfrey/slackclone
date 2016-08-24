@@ -90,7 +90,12 @@ body {
   background: #737C8C;
 }
 
+#SearchBox{
+	margin-left: 2%;
+}
+
 #TeamListHeader{
+  margin-top: 1%;
   padding: 15px;
   margin-bottom: 20px;
   background-color: #ffffff;

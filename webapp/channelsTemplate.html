@@ -54,9 +54,20 @@
 
 <!-------------------Message and Input Container---------------------->
     <div class="container col-md-10">
+         <form class="row">
+            <div class="input-group">
+                <input class="form-control" ng-model="searchMessage" id="searchBox">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" ng-click="">Search</button>
+                    </span>
+            </div>
+        </form>
+
+
         <section class="row " id="MessagePannel"  scroll-glue-bottom="glued">
             <div class="pannel panel-primary">
                 <div class="panel-heading" id="MessageHeader">Message List</div>
+
                 <div class="panel-body" ng-repeat="message in messages | orderBy:message.timeStamp">
                     <h3>{{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
                     <p> {{message.message}} </p>
