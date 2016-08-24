@@ -61,4 +61,14 @@ $scope.setCurrentChannel = function (teamId, userId, channelId) {
     return returnString;
  }
 
+  $scope.setCurrenrtUser = function (userid) {
+
+    console.log(userid);
+    $rootScope.user = user;
+    service.getUserProfileJSON(user.id, $rootScope.user.name)
+      .then((name) => {
+        $rootScope.user = user;
+        console.log(name);
+      });
+  }
 });
