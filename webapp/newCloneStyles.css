@@ -1,26 +1,122 @@
-#MessagePannel{
-	/*border-style: solid; 
-	border-color;*/
-	overflow-y: scroll;
-	min-height: 10%;
-	max-height: 500px;
-	margin: 2%;
+body {
+	padding-top: 50px;
+	/*background-color:#00b3b3;*/
+  	margin-left: 0.5%;
+}
+.starter-template {
+	padding: 40px 15px;
 	/*text-align: center;*/
+}
+
+.panel {
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.panel-body{
+  background-color: #ffffff;
+  /*border: 1px solid black;*/
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.panel-body:hover {
+    cursor: pointer;
+    background-color: #9f9 !important;
 }
 
 #TeamPannel{
 	border-style: solid; 
-	border-color:silver;
-	margin: 2%;
-	text-align: center;
-	width: 25%;
+	border-color:black;
 	font-size: 14px;
 	font-weight: bolder;
+	padding: 0.5%;
+	border-radius: 2%;
 }
 
 #ChannelPannel{
-	/*border-style: solid; 
-	border-color: black;*/
+	overflow-y: scroll;
+	max-height: 500px;
+	margin-top:2%;
+	border-style: solid; 
+	border-color:black;
+	font-size: 14px;
+	padding: 0.5%;
+	border-radius: 2%;
+}
+
+
+#MessagePannel{
+	overflow-y: scroll;
+	min-height: 10%;
+	max-height: 500px;
+	border-style: solid; 
+	border-color:black;
+	font-size: 14px;
+	padding: 0.5%;
+	padding-right:0;
+	border-radius: 1.5%;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	margin-left:2%;
+	margin-right:2%;
+}
+
+#msgTimeSpan{
+	font-size: 0.5em;
+	font: italic bold Georgia, serif;
+	color:grey;
+}
+
+.input-group{
+	padding: 2%;
+}
+
+#MessageHeader{
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  /*background: linear-gradient(-90deg,#a4a02e, #2e6da4,#a42e32);*/
+  background: #737C8C;
+}
+
+#TeamListHeader{
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+ /* background: linear-gradient(-90deg, #ffa500,#005aff);*/
+ background: #005aff;
+}
+
+#ChannelListHeader{
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+ /* background: linear-gradient(-90deg, #00ffff,#ff0000);*/
+ background: #ffa500;
+}
+
+/*
+
+#ChannelPannel{
 	overflow-y: scroll;
 	max-height: 500px;
 	margin: 2%;
@@ -30,8 +126,6 @@
 }
 
 #InputMessagePannel{
-	/*border-style: solid;
-	border-color: purple;*/
 	margin: 2%;	
 	text-align: center;
 	padding-top: 20%;
@@ -39,7 +133,6 @@
 }
 
 #Header{
-	text-align: center;
 	margin-top: -6px;
 }
 
@@ -59,6 +152,5 @@ width: 35%;
 float: right;
 margin-left: 35%;
 margin-right: 17%;
-
-
 }
+*/
