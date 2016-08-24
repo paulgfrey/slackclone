@@ -4,6 +4,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
   //Populate Teams
   service.getTeams($rootScope.user.id).then((teamsList)=> {
       $scope.teams = teamsList;
+      $scope.updateChannels();
   });
 
 $scope.setCurrentChannel = function (teamId, userId, channelId) {
@@ -41,5 +42,23 @@ $scope.setCurrentChannel = function (teamId, userId, channelId) {
  }
 
  $scope.updateChannels();
+
+ $scope.isTeamSelected = function(localTeam){
+    var returnString = "";
+    if(localTeam.name === $rootScope.team.name){
+      returnString = "selectedItem";
+    }
+    
+    return returnString;
+ }
+
+ $scope.isChannelSelected = function(channel){
+    var returnString = "";
+    if(channel.name === $rootScope.channel.name){
+      returnString = "selectedItem";
+    }
+    
+    return returnString;
+ }
 
 });

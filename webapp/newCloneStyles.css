@@ -51,6 +51,11 @@ body {
 	border-radius: 2%;
 }
 
+.selectedItem{
+	/*color: white;*/
+	background: #5b98fc;
+}
+
 
 #MessagePannel{
 	overflow-y: scroll;
@@ -90,8 +95,8 @@ body {
   background: #737C8C;
 }
 
-#SearchBox{
-	margin-left: 2%;
+#SearchPannel{
+	margin-left: 5%;
 }
 
 #TeamListHeader{
