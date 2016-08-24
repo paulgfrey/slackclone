@@ -36,14 +36,14 @@
     <div class="container col-md-2">
         <section class="row " id="TeamPannel">
             <div class="pannel panel-primary">
-                <div class="panel-heading" id="TeamListHeader">Team List</div>
+                <div class="panel-heading" id="TeamListHeader">Team List - {{teams.length}}</div>
                 <div class="panel-body" ng-class="isTeamSelected(localTeam)" ng-repeat="localTeam in teams" ng-click="setCurrentTeam(localTeam)">{{localTeam.name}}</div>
             </pannel>
         </section>
     <!----------------Channel Part------------------------->
         <section class="row" id="ChannelPannel">
             <div class="pannel panel-primary">
-                <div class="panel-heading" id="ChannelListHeader">Channel List</div>
+                <div class="panel-heading" id="ChannelListHeader">Channel List - {{channels.length}}</div>
                 <div class="panel-body" ng-class="isChannelSelected(channel)" ng-repeat="channel in channels" ng-click="setCurrentChannel(channel.teamId, user.id, channel.id)">
                     {{channel.name}}
                 </div>
@@ -60,7 +60,7 @@
                 <h4>Search:</h4>
             </div>
             <div class="col-md-10">
-                <input class="form-control" ng-model="searchMessage" id="searchBox" col-md-6>
+                <input class="form-control" ng-model="searchMessage" id="searchBox" placeholder="Search in Message">
             </div>
         </section>
         
@@ -79,7 +79,7 @@
         <!------------Input Pannel--------------->
          <form class="row" id="inputFormID">
             <div class="input-group">
-                <input class="form-control" ng-model="newMessage" id="inputTextBox">
+                <input class="form-control" ng-model="newMessage" id="inputTextBox" placeholder="Type New Message Here">
                 <span class="input-group-btn">
                                 <button class="btn btn-default" ng-click="postMessage(newMessage)">Add</button>
                                 </span>
