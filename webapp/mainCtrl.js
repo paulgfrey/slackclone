@@ -1,7 +1,6 @@
 slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, service) {
   console.log('mainCtrl');
 
-
   $scope.handleUserInit = function (user, remember) {
     service.getFirstTeam(user.id)
       .then((team) => {
@@ -15,7 +14,7 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
               $rootScope.team = team;
               $rootScope.channel = channel;
               if (team && channel) {
-                if(remember) {
+                if (remember) {
                   service.saveUserId(user.id);
                 }
                 $location.path('/messages');
@@ -37,22 +36,22 @@ slackCloneApp.controller('mainCtrl', function ($rootScope, $scope, $location, se
   }
 
   var userId = service.getSavedUserId();
-  if(userId) {
-      service.getUser(userId)
-        .then((user) => {
-          $rootScope.user = user;
-          $scope.handleUserInit($rootScope.user);
-        });
+  if (userId) {
+    service.getUser(userId)
+      .then((user) => {
+        $rootScope.user = user;
+        $scope.handleUserInit($rootScope.user);
+      });
   }
   $location.path('/login');
 });
 
 slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, service) {
   console.log('loginCtrl');
-  if($rootScope.user) {
+  if ($rootScope.user) {
     $scope.name = $rootScope.user.name;
   }
-  if(service.getSavedUserId()) {
+  if (service.getSavedUserId()) {
     $scope.remember = true;
   }
 
@@ -63,7 +62,7 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
         $rootScope.user = user;
         if ($rootScope.user) {
           $scope.handleUserInit($rootScope.user, remember);
-          if(! remember) {
+          if (!remember) {
             service.removeSavedUserId();
           }
         }
@@ -78,3 +77,35 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
       });
   }
 })
+
+slackCloneApp.controller('newUserCtrl', function ($rootScope, $scope, $location, service) {
+  console.log('newUserCtrl');
+  $scope.name = undefined;
+  $rootScope.user = undefined;
+  $rootScope.team = undefined;
+  $rootScope.channel = undefined;
+  service.removeSavedUserId();
+
+  service.getAllTeams()
+    .then((teams) => {
+      $scope.teams = teams;
+      $scope.selectedTeam = teams[0];
+      $scope.$apply();
+    });
+
+  $scope.createUser = function () {
+    service.createUser($scope.name, $scope.password, $scope.email, $scope.selectedTeam.id)
+      .then((userId) => {
+        service.getUser(userId)
+          .then((user) => {
+            $rootScope.user = user;
+            $scope.handleUserInit($rootScope.user);
+          }),
+          (err) => {
+            $scope.createUserError = (err);
+            $scope.apply();
+          }
+      });
+  }
+})
+

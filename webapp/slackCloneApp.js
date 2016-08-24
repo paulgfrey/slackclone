@@ -4,16 +4,20 @@ slackCloneApp.config(function ($routeProvider) {
         when('/', {
             templateUrl: 'index.html',
             controller: 'mainCtrl'
-        }).
-        when('/login', {
+        })
+        .when('/login', {
             templateUrl: 'loginTemplate.html',
             controller: 'loginCtrl'
-        }).
-        when('/messages', {
+        })
+        .when('/signup', {
+            templateUrl: 'newUserTemplate.html',
+            controller: 'newUserCtrl'
+        })
+        .when('/messages', {
             templateUrl: 'channelsTemplate.html',
             controller: 'channelMsgsCtrl'
-        }).
-        otherwise({
+        })
+        .otherwise({
             redirectTo: '/'
         });
 });

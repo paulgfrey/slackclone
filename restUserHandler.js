@@ -42,3 +42,36 @@ function getUserByLogin(req, res) {
         res.send({error: err}); 
     });
 }
+
+exports.createUser = createUser;
+function createUser(req, res) {
+    console.log('create User');
+
+    var conn = dbHandler.getDbConn();
+
+    var name = req.body.name;
+    var password = req.body.password;
+    var email = req.body.email;
+    var teamId = req.body.teamId;
+
+    var rtnUserId;
+
+    userHandler.createUser(conn, name, password, email)
+    .then(
+        (userId) => {
+            var rtnUserId = userId;
+            userHandler.createTeamUser(conn, userId, teamId)
+            .then(
+                (teamUsersId) => {
+                    res.send(JSON.stringify({ userId: rtnUserId}));
+                }
+            )
+            .catch(function(err) {
+                res.send({error: err});
+            })
+        }
+    )
+    .catch(function(err) {
+        res.send({error: err}); 
+    });
+}

@@ -75,6 +75,29 @@ function getChannelsByTeamAndUser(db, userId, teamId) {
 
 }
 
+exports.getAllTeams = getAllTeams;
+function getAllTeams(db, userId, teamId) {
+    return new Promise((resolve, reject) => {
+        var query = "SELECT * FROM TEAM";
+        var teams = [];
+        db.each(query,
+            function(err, row) {
+                teams.push({ id: row.ID, name: row.NAME });
+            },
+            function(err) {
+                if(err) {
+                    reject(err);
+                    throw err;
+                }
+                else {
+                    console.log('getAllTeamsList()=' + JSON.stringify(teams));
+                    resolve(JSON.stringify(teams));
+                }
+        });
+    });
+
+}
+
 /*exports.createTeamUserProfile = createTeamUserProfile;
 function createTeamUserProfile(db, USERID, TEAMID) {
     // TODO Need to return ID from DB.

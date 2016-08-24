@@ -1,0 +1,17 @@
+Backend and UI Enhancements
+- Create User (choose Team)
+- Create Team (create an initial channel) (show existing teams on left)
+- Create channels (within team) (show existing channels on left)
+- Upload a file
+- Private channels
+
+UI Enhancements
+- Search messages
+- show the selected Team
+- show the selected Channel
+- show current user
+- show icons for person, channels and teams.
+- show totals next to channels and teams.
+- channels are not displaying when you first enter the messages screen
+
+

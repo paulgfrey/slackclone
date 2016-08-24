@@ -12,6 +12,25 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                 );
             });
         },
+        createUser: function (_name, _password, _email, _teamId) {
+            return new Promise((resolve, reject) => {
+                var req = {
+                    method: 'POST',
+                    url: '/rest/create/user',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({ name: _name, password: _password, email: _email, teamId: _teamId })     
+                }
+                $http(req)
+                .then(function(response) {
+                    resolve(response.data);
+                },
+                function (resposne) {
+                    reject('HTTP error ' + response.statusText);
+                });
+            });
+        },
         getUserByLogin: function (_name, _password) {
             return new Promise((resolve, reject) => {
                 var req = {
@@ -67,8 +86,18 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     });
             });
         }, 
-
-
+        getAllTeams: function () {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/teams/all')
+                    .then(function (response) {
+                        var teams = response.data;
+                        resolve(teams);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });
+        }, 
         getMsgs: function(channelId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/channel/chats/' + channelId)

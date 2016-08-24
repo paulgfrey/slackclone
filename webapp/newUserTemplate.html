@@ -1,0 +1,15 @@
+<link href="login.css" rel="stylesheet" />
+<div class="login-page">
+    <div class="form">
+        <form class="login-form" ng-submit="createUser();">
+            <h1 align="center">Slack Clone Signup</h1>
+            <input type="text" placeholder="username" ng-model="name" required/>
+            <input type="password" placeholder="password" ng-model="password" required/>
+            <input type="email" placeholder="email" ng-model="email" required/>
+            Team: <select ng-model="selectedTeam" ng-options="y.name for (x, y) in teams"></select>
+            <input type="submit" value="Signup" />
+            <br>
+            <h2 class="has-error">{{createUserError}}</h2>
+        </form>
+    </div>
+</div>

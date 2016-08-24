@@ -36,3 +36,20 @@ function getTeamsByUserIDJSON(req, res) {
         });
 
 }
+
+exports.getAllTeams = getAllTeams;
+function getAllTeams(req, res) {
+    console.log('getAllTeams');
+
+    var conn = dbHandler.getDbConn();
+    
+    teamlHandler.getAllTeams(conn)
+        .then(
+        (teams) => {
+            res.send(teams);
+        })
+        .catch(function (err) {
+            res.send({ error: err });
+        });
+
+}

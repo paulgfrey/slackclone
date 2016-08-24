@@ -45,13 +45,30 @@ function getUserByNamePassword(db, name, password) {
     ));
 }
 
-exports.createUserProfile = createUserProfile;
-function createUserProfile(db, name, password, email) {
+exports.createUser = createUser;
+function createUser(db, name, password, email) {
     // TODO Need to return ID from DB.
     return new Promise((resolve, reject) => {
         var sql = "INSERT INTO USERS(NAME, PASSWORD, EMAIL) " +
                 "VALUES (?, ?, ?)";
         db.run(sql, name, password, email, function(err) {
+            if(err) {
+                reject(err);
+                throw err;
+            }
+            else {
+                resolve(this.lastID);
+            }
+        });
+    });
+}
+
+exports.createTeamUser = createTeamUser;
+function createTeamUser(db, userId, teamId) {
+    return new Promise((resolve, reject) => {
+        var sql = "INSERT INTO TEAMUSERS(USERID, TEAMID) " +
+                    "VALUES (?,?)"
+        db.run(sql, userId, teamId, function(err) {
             if(err) {
                 reject(err);
                 throw err;
