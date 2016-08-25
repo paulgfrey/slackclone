@@ -1,6 +1,6 @@
 body {
 	padding-top: 50px;
-	/*background-color:#00b3b3;*/
+	background-color:#eeeeee;
   	margin-left: 0.5%;
 }
 .starter-template {
@@ -11,7 +11,7 @@ body {
 .panel {
   padding: 15px;
   margin-bottom: 20px;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   border: 1px solid black;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -19,7 +19,7 @@ body {
 }
 
 .panel-body{
-  background-color: #ffffff;
+  background-color: #eeeeee;
   /*border: 1px solid black;*/
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -28,7 +28,7 @@ body {
 
 .panel-body:hover {
     cursor: pointer;
-    background-color: #737C8C !important;
+    background-color: #BFDEFF !important;
 }
 
 #TeamPannel{
@@ -41,7 +41,7 @@ body {
 }
 
 #ChannelPannel{
-	overflow-y: scroll;
+	overflow-y: auto;
 	max-height: 500px;
 	margin-top:2%;
 	border-style: solid; 
@@ -51,24 +51,23 @@ body {
 	border-radius: 2%;
 }
 
+.panel-primary div:nth-of-type(even) {background-color:#eeeeee} 
+.panel-primary div:nth-of-type(odd) {background-color: #dddddd} 
+
 .selectedItem{
 	/*color: white;*/
-	background: #5b98fc;
+	background: #5b98fc !important;
 }
 
 
 #MessagePannel{
-	overflow-y: scroll;
+	overflow-y: auto;
 	min-height: 10%;
 	max-height: 500px;
 	border-style: solid; 
 	border-color:black;
 	font-size: 14px;
-	padding: 0.5%;
-	padding-right:0;
-	border-radius: 1.5%;
-	border-top-right-radius: 0;
-	border-bottom-right-radius: 0;
+	border-radius: 7px;
 	margin-left:2%;
 	margin-right:2%;
 }
@@ -86,7 +85,6 @@ body {
 #MessageHeader{
   padding: 15px;
   margin-bottom: 20px;
-  background-color: #ffffff;
   border: 1px solid black;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -103,7 +101,6 @@ body {
   margin-top: 1%;
   padding: 15px;
   margin-bottom: 20px;
-  background-color: #ffffff;
   border: 1px solid black;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -115,13 +112,12 @@ body {
 #ChannelListHeader{
   padding: 15px;
   margin-bottom: 20px;
-  background-color: #ffffff;
   border: 1px solid black;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
  /* background: linear-gradient(-90deg, #00ffff,#ff0000);*/
- background: #ffa500;
+ background: #005aff;
 }
 
 /*
