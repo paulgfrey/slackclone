@@ -34,9 +34,29 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
   }
 
   $scope.updateChannels = function () {
+
     service.getChannels($rootScope.team.id, $rootScope.user.id)
       .then((channels) => {
-        $scope.channels = channels;
+        if (!$rootScope.saveChannels) {
+          $scope.channels = channels;
+        }
+        else {
+          // Let's see if channels actually changed
+          var channelFoundCount = 0;
+
+          for(var i = 0; i < channels.length; i++) {
+            channelFound = false;
+            for(var x = 0; x < $rootScope.saveChannels.length && ! channelFound; x++) {
+              if(channels[i].id === $rootScope.saveChannels[x].id) {
+                channelFoundCount++;
+              }
+            }
+          }
+          if(channelFoundCount != $rootScope.saveChannels.length) {
+            $scope.channels = channels;            
+          }
+        }
+        $rootScope.saveChannels = $scope.channels;
       });
   }
 
