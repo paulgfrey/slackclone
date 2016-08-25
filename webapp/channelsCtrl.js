@@ -4,6 +4,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
   //Populate Teams
   service.getTeams($rootScope.user.id).then((teamsList) => {
     $scope.teams = teamsList;
+    $scope.setCurrentTeam($scope.teams[0]);
     $scope.updateChannels();
   });
 
@@ -34,12 +35,10 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
   }
 
   $scope.updateChannels = function () {
-
     service.getChannels($rootScope.team.id, $rootScope.user.id)
       .then((channels) => {
         if (!$rootScope.saveChannels) {
           $scope.channels = channels;
-          $scope.$apply();
         }
         else {
           // Let's see if channels actually changed
@@ -55,7 +54,6 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
           }
           if(channelFoundCount != $rootScope.saveChannels.length) {
             $scope.channels = channels;            
-            $scope.$apply();
           }
         }
         $rootScope.saveChannels = $scope.channels;

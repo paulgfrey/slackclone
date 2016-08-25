@@ -129,6 +129,14 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
             });
         }, 
         getChannels: function(teamId, userId) {
+            return $http.get('/rest/team/channels/'+ teamId + '/' + userId)
+            .then(function (response) {
+                return response.data;
+            },
+            function(response) {
+                return 'HTTP error ' + response.statusText;
+            });
+            /*
             return new Promise((resolve, reject) => {
                 $http.get('/rest/team/channels/'+ teamId + '/' + userId)
                 .then(function (response) {
@@ -138,6 +146,7 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     reject('HTTP error ' + response.statusText);
                 });
             });
+            */
         },
         postMsg: function (channelId, userId, _msg, callback) {
             var req = {
