@@ -44,7 +44,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
 
   $scope.isTeamSelected = function (localTeam) {
     var returnString = "";
-    if (localTeam.name === $rootScope.team.name) {
+    if (localTeam.id === $rootScope.team.id) {
       returnString = "selectedItem";
     }
 
@@ -53,7 +53,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
 
   $scope.isChannelSelected = function (channel) {
     var returnString = "";
-    if (channel.name === $rootScope.channel.name) {
+    if (channel.id === $rootScope.channel.id) {
       returnString = "selectedItem";
     }
 
