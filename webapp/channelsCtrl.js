@@ -77,6 +77,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
       function (channelObj) {
         var channelId = channelObj.channelId;
         $scope.setCurrentChannel($rootScope.team.id, $rootScope.user.id, channelId);
+        document.getElementById("inputChannelTextBox").value = "";
       });
   }
 
