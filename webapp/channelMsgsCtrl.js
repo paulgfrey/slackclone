@@ -66,7 +66,7 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
       console.log('Initializing the Timer to run every second.');
       $scope.timer = $interval(function () {
         $scope.updateMessagePanel();
-      }, 1000);
+      }, 250);
     };
     $rootScope.msgTimer();
   }

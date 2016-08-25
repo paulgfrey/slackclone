@@ -1,4 +1,4 @@
-slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location, service) {
+slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location, $interval, service) {
   console.log('channelsCtrl');
 
   //Populate Teams
@@ -77,8 +77,20 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
       function (channelObj) {
         var channelId = channelObj.channelId;
         $scope.setCurrentChannel($rootScope.team.id, $rootScope.user.id, channelId);
-        document.getElementById("inputChannelTextBox").value = "";
+        //document.getElementById("inputChannelTextBox").value = "";
+        $scope.newChannel = "";
+        $scope.$apply();
       });
   }
 
+  if (!$rootScope.channelTimer) {
+    $rootScope.channelTimer = function () {
+      //Initialize the Timer to run every 1000 milliseconds i.e. one second.
+      console.log('Initializing the Timer to run every second.');
+      $scope.timer = $interval(function () {
+        $scope.updateChannels();
+      }, 250);
+    };
+    $rootScope.channelTimer();
+  }
 });
