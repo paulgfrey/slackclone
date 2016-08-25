@@ -55,7 +55,7 @@ function getChannelsByTeamAndUser(db, userId, teamId) {
         var query = " Select 	C1.*   from Channel C1, TeamUsers TU1 " +
             " Where 	C1.TEAMID = TU1.TEAMID " +
 	        " And TU1.USERID = ? " +
-	        " AND TU1.TEAMID = ? ";
+	        " AND TU1.TEAMID = ? AND C1.TYPE = 'Public'";
         var channels = [];
         db.each(query,userId, teamId,
             function(err, row) {
@@ -73,6 +73,29 @@ function getChannelsByTeamAndUser(db, userId, teamId) {
         });
     });
 
+}
+
+exports.getAllTeamUsersDb = getAllTeamUsersDb;
+function getAllTeamUsersDb(db, teamId) {
+    return new Promise((resolve, reject) => {
+        var query = "SELECT U.* FROM USERS U, TEAMUSERS TU " +
+                    "WHERE U.ID = TU.USERID AND TU.TEAMID = ?";
+        var users = [];
+        db.each(query,
+            function(err, row) {
+                users.push({ id: row.ID, name: row.NAME, password: row.PASSWORD, email: row.EMAIL });
+            },
+            function(err) {
+                if(err) {
+                    reject(err);
+                    throw err;
+                }
+                else {
+                    console.log('getAllTeamUsers()=' + JSON.stringify(users));
+                    resolve(JSON.stringify(users));
+                }
+        });
+    });   
 }
 
 exports.getAllTeams = getAllTeams;

@@ -42,7 +42,7 @@ function getAllTeams(req, res) {
     console.log('getAllTeams');
 
     var conn = dbHandler.getDbConn();
-    
+
     teamlHandler.getAllTeams(conn)
         .then(
         (teams) => {
@@ -53,3 +53,23 @@ function getAllTeams(req, res) {
         });
 
 }
+
+/*
+TODO LEFT OFF
+exports.getAllTeamUsers = getAllTeamUsers;
+function getAllTeamUsers(req, res) {
+    console.log('getAllTeamUsers');
+
+    var conn = dbHandler.getDbConn();
+
+    teamlHandler.getAllTeams(conn)
+        .then(
+        (teams) => {
+            res.send(teams);
+        })
+        .catch(function (err) {
+            res.send({ error: err });
+        });
+
+}
+*/
