@@ -23,3 +23,20 @@ function getChannelMessagesJSON(db,channelID) {
         });
     });
 }
+
+exports.createChannelDb = createChannelDb;
+function createChannelDb(db, name, teamId) {
+    return new Promise((resolve, reject) => {
+        var sql = "INSERT INTO CHANNEL (NAME, TEAMID, DESCRIPTION, TYPE) " +
+                    "VALUES (?, ?, ?, 'Public')";
+        db.run(sql, name, teamId, name, function(err) {
+            if(err) {
+                reject(err);
+                throw err;
+            }
+            else {
+                resolve(this.lastID);
+            }
+        });
+    });
+}

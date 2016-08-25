@@ -95,8 +95,8 @@ slackCloneApp.controller('newUserCtrl', function ($rootScope, $scope, $location,
 
   $scope.createUser = function () {
     service.createUser($scope.name, $scope.password, $scope.email, $scope.selectedTeam.id)
-      .then((userId) => {
-        service.getUser(userId)
+      .then((user) => {
+        service.getUser(user.userId)
           .then((user) => {
             $rootScope.user = user;
             $scope.handleUserInit($rootScope.user);

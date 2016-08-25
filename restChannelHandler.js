@@ -24,3 +24,20 @@ function getChannelMessages(req, res) {
     });
     
 }
+
+exports.createChannel = createChannel;
+function createChannel(req, res) {
+    console.log('create channel');
+
+    var conn = dbHandler.getDbConn();
+
+    var name = req.body.name;
+    var teamId = req.body.teamId;
+
+    channelHandler.createChannelDb(conn, name, teamId)
+    .then(
+        (rtnChannelId) => {
+            res.send(JSON.stringify({ channelId: rtnChannelId }));
+        }
+    )
+}
