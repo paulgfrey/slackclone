@@ -77,7 +77,7 @@
 
                 <div class="panel-body" ng-repeat="message in messages | orderBy:message.timeStamp | filter:searchMessage">
                     <h3>{{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
-                    <p> {{message.message }} </p>
+                    <p ng-bind-html="message.message | imageTag"> </p>
                 </div>
             </pannel>
         </section>

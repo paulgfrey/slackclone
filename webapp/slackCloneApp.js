@@ -1,4 +1,4 @@
-var slackCloneApp = angular.module("slackCloneApp", ['ngRoute', 'ngCookies', 'luegg.directives']);
+var slackCloneApp = angular.module("slackCloneApp", ['ngRoute', 'ngCookies', 'luegg.directives', 'ngSanitize']);
 slackCloneApp.config(function ($routeProvider) {
     $routeProvider.
         when('/', {
@@ -22,17 +22,27 @@ slackCloneApp.config(function ($routeProvider) {
         });
 });
 
-/*
-TODO Not working
-slackCloneApp.filter('imageTag', function() {
-    return function(input) {
+slackCloneApp.filter('imageTag', function () {
+    var convertImages = function (input, extension) {
         var output = input;
-        var matches = input.match('http\:.*.jpg');
-        for(var i = 0; i < matches.length; i++) {
-            var newImageTag = '<img src=\'' + matches[i] + '\'>'
-            output = output.replace(matches[i], newImageTag);
+        if (!output) {
+            return output
+        }
+        var matches = input.match('http\:.*' + extension);
+        if (matches) {
+            for (var i = 0; i < matches.length; i++) {
+                var newImageTag = '<img width=\'200\' src=\'' + matches[i] + '\'>'
+                output = output.replace(matches[i], newImageTag);
+            }
         }
         return output;
     }
+
+    return function (input) {
+        var output = convertImages(input, ".jpg");
+        output = convertImages(output, ".png");
+        output = convertImages(output, ".gif");
+
+        return (output);
+    }
 });
-*/
