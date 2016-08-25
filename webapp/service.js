@@ -31,6 +31,25 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                 });
             });
         },
+        createChannel: function (_name, _teamId) {
+            return new Promise((resolve, reject) => {
+                var req = {
+                    method: 'POST',
+                    url: '/rest/channel/create',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: JSON.stringify({ name: _name, teamId: _teamId })     
+                }
+                $http(req)
+                .then(function(response) {
+                    resolve(response.data);
+                },
+                function (resposne) {
+                    reject('HTTP error ' + response.statusText);
+                });
+            });
+        },
         getUserByLogin: function (_name, _password) {
             return new Promise((resolve, reject) => {
                 var req = {

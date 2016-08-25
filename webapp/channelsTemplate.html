@@ -45,6 +45,14 @@
                 <div class="panel-body" ng-class="isChannelSelected(channel)" ng-repeat="channel in channels" ng-click="setCurrentChannel(channel.teamId, user.id, channel.id)">
                     {{channel.name}}
                 </div>
+                <form>
+                    <div class="input-group">
+                        <input class="form-control" ng-model="newChannel" id="inputTextBox" placeholder="Add Channel Here">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" ng-click="insertChannel(newChannel)">Add</button>
+                        </span>
+                    </div>
+                </form>
             </pannel>
         </section>
     </div>
@@ -79,8 +87,8 @@
             <div class="input-group">
                 <input class="form-control" ng-model="newMessage" id="inputTextBox" placeholder="Type New Message Here">
                 <span class="input-group-btn">
-                                <button class="btn btn-default" ng-click="postMessage(newMessage)">Add</button>
-                                </span>
+                    <button class="btn btn-default" ng-click="postMessage(newMessage)">Add</button>
+                </span>
             </div>
         </form>
     </div>
