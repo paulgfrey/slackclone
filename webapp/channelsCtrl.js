@@ -39,6 +39,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
       .then((channels) => {
         if (!$rootScope.saveChannels) {
           $scope.channels = channels;
+          $scope.$apply();
         }
         else {
           // Let's see if channels actually changed
@@ -54,6 +55,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
           }
           if(channelFoundCount != $rootScope.saveChannels.length) {
             $scope.channels = channels;            
+            $scope.$apply();
           }
         }
         $rootScope.saveChannels = $scope.channels;
@@ -109,7 +111,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
       console.log('Initializing the Timer to run every second.');
       $scope.timer = $interval(function () {
         $scope.updateChannels();
-      }, 250);
+      }, 5000);
     };
     $rootScope.channelTimer();
   }
