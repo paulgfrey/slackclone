@@ -163,6 +163,12 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
         getSavedUserId: function() {
             return $cookies.get('userId');
             //return rtnId;            
+        },
+        checkImage(src, goodFunc, badFunc) {
+            var img = new Image();
+            img.onload = goodFunc;
+            img.onerror = badFunc;
+            img.src = src;
         }
     };
 });

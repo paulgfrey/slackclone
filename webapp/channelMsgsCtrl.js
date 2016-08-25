@@ -23,13 +23,23 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
             var j = i;
             service.getUser(messages[j].userId).then((retrievedUserID) => {
               console.log("Retrieved User Name is: " + retrievedUserID.name);
-              $scope.messages.push({
+              var newMsg = {
                 id: messages[j].id,
                 timeStamp: messages[j].timeStamp,
                 userName: retrievedUserID.name,
                 message: messages[j].message,
-                displayed: true
-              });
+                displayed: true,
+                userId: retrievedUserID.id
+              };
+              var avatarImg = "images/user" + newMsg.userId + ".jpg";
+              service.checkImage(avatarImg,
+                function () {  // Good Func
+                  newMsg.avatarImg = "images/user" + newMsg.userId + ".jpg";
+                },
+                function () {  // bad Func
+                  newMsg.avatarImg = "images/default.jpg";
+                });
+              $scope.messages.push(newMsg);
               $scope.$apply();
             });
           })();
