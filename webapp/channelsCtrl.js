@@ -1,4 +1,4 @@
-slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location, $interval, service) {
+slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location, $interval, $timeout, service) {
   console.log('channelsCtrl');
 
   //Populate Teams
@@ -57,6 +57,9 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
           }
         }
         $rootScope.saveChannels = $scope.channels;
+        $timeout(function(){
+          $scope.$apply();
+        });
       });
   }
 
