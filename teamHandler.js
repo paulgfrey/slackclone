@@ -67,7 +67,6 @@ function getChannelsByTeamAndUser(db, userId, teamId) {
                     throw err;
                 }
                 else {
-                    console.log('getChannelsByTeamAndUser()=' + JSON.stringify(channels));
                     resolve(JSON.stringify(channels));
                 }
         });

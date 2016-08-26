@@ -74,9 +74,8 @@
         <section class="row " id="MessagePannel"  scroll-glue-bottom="glued">
             <div class="pannel panel-primary">
                 <div class="panel-heading" id="MessageHeader">Message List</div>
-
                 <div class="panel-body" ng-repeat="message in messages | orderBy:message.timeStamp | filter:searchMessage">
-                    <h3><img ng-src="{{ message.avatarImg }}" width="100"> {{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
+                    <h3><img ng-src="{{ message.avatarImg }}" width="50"> {{message.userName}} <span id="msgTimeSpan"> {{message.timeStamp | date:'medium'}}</span></h3>
                     <p ng-bind-html="message.message | imageTag"> </p>
                 </div>
             </pannel>

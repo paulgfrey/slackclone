@@ -5,8 +5,6 @@ var dbHandler = require('./dbHandler.js');
 //var db = new sqlite3.Database('testslackclone.db');
 exports.getChannelsByTeamAndUser = getChannelsByTeamAndUser;
 function getChannelsByTeamAndUser(req, res) {
-    console.log('getChannelsByTeamAndUser()');
-
     var conn = dbHandler.getDbConn();
 
     var teamId = req.params.teamId;

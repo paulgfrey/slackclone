@@ -109,7 +109,7 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
       console.log('Initializing the Timer to run every second.');
       $scope.timer = $interval(function () {
         $scope.updateChannels();
-      }, 5000);
+      }, 250);
     };
     $rootScope.channelTimer();
   }

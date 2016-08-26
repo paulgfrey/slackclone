@@ -28,10 +28,14 @@ slackCloneApp.filter('imageTag', function () {
         if (!output) {
             return output
         }
-        var matches = input.match('http\:.*' + extension);
+        if(input.match("<img.*" + extension)) {
+            // Already filtered so exit
+            return(output);
+        }
+        var matches = input.match('http://.*' + extension);
         if (matches) {
             for (var i = 0; i < matches.length; i++) {
-                var newImageTag = '<img width=\'200\' src=\'' + matches[i] + '\'>'
+                var newImageTag = '<a target=\'_blank\' href=\'' + matches[i] + '\'><img width="300px" src=\'' + matches[i] + '\'></a>';
                 output = output.replace(matches[i], newImageTag);
             }
         }
@@ -45,4 +49,10 @@ slackCloneApp.filter('imageTag', function () {
 
         return (output);
     }
+});
+
+slackCloneApp.filter('unsafe', function ($sce) {
+    return function (val) {
+        return $sce.trustAsHtml(val);
+    };
 });

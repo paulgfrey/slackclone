@@ -3,9 +3,9 @@ var sqlite3 = require('sqlite3');
 exports.getChannelMessagesJSON = getChannelMessagesJSON;
 function getChannelMessagesJSON(db,channelID) {
     return new Promise((resolve, reject) => {
-        var query = "SELECT * FROM MESSAGES M1"
-            + "  WHERE M1.CHANNELID = '" + channelID + "'"
-            + " ORDER BY M1.TIMESTAMP";
+        var query = "SELECT ID, USERID, CHANNELID, datetime(timestamp, 'localtime') as TIMESTAMP, MSG  FROM MESSAGES"
+            + "  WHERE CHANNELID = '" + channelID + "'"
+            + " ORDER BY TIMESTAMP";
         var messages = [];
         db.each(query,
             function(err, row) {
