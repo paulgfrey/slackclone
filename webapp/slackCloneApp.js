@@ -55,4 +55,13 @@ slackCloneApp.filter('unsafe', function ($sce) {
     return function (val) {
         return $sce.trustAsHtml(val);
     };
+
+
 });
+
+slackCloneApp.filter('NameFormat', function(){
+    return function(myString){ 
+        return myString[0].toUpperCase() + myString.substr(1).toLowerCase();
+    };
+})
+;

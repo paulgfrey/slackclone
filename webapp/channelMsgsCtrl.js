@@ -60,9 +60,5 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
     };
     $rootScope.msgTimer();
   }
-
-  $scope.capFirstLetter = function(myString){
-    return myString[0].toUpperCase() + myString.substr(1);
-  }
   
 });
