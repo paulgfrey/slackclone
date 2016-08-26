@@ -45,14 +45,14 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
           var channelFoundCount = 0;
 
           for(var i = 0; i < channels.length; i++) {
-            channelFound = false;
-            for(var x = 0; x < $rootScope.saveChannels.length && ! channelFound; x++) {
+            for(var x = 0; x < $rootScope.saveChannels.length; x++) {
               if(channels[i].id === $rootScope.saveChannels[x].id) {
                 channelFoundCount++;
+                break;
               }
             }
           }
-          if(channelFoundCount != $rootScope.saveChannels.length) {
+          if(channelFoundCount != channels.length) {
             $scope.channels = channels;            
           }
         }
