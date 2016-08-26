@@ -7,7 +7,6 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
         if (!$scope.messages) {
           $scope.messages = [];
         }
-        //$scope.messages = [];
         for (var i = 0; i < messages.length; i++) {
           var msgFound = false;
           for (var x = 0; x < $scope.messages.length && !msgFound; x++) {
@@ -18,33 +17,14 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
           if (msgFound) {
             continue;
           }
-          messages[i].timeStamp = new Date(messages[i].timeStamp);
-          (function () {
-            var j = i;
-            service.getUser(messages[j].userId).then((retrievedUserID) => {
-              console.log("Retrieved User Name is: " + retrievedUserID.name);
-              var newMsg = {
-                id: messages[j].id,
-                timeStamp: messages[j].timeStamp,
-                userName: retrievedUserID.name,
-                message: messages[j].message,
-                displayed: true,
-                userId: retrievedUserID.id
-              };
-              var avatarImg = "images/user" + newMsg.userId + ".jpg";
-              service.checkImage(avatarImg,
-                function () {  // Good Func
-                  newMsg.avatarImg = "images/user" + newMsg.userId + ".jpg";
-                },
-                function () {  // bad Func
-                  newMsg.avatarImg = "images/default.jpg";
-                });
-              $scope.messages.push(newMsg);
-              $scope.$apply();
-            });
-          })();
+          var newMsg = messages[i];
+          newMsg.timeStamp = new Date(newMsg.timeStamp);
+          var user = service.getCachedUser(newMsg.userId);
+          newMsg.userName = user.name;
+          newMsg.avatarImg = user.avatarImg;
+          $scope.messages.push(newMsg);
         }
-        $scope.$apply();
+        //$scope.$apply();
       });
   }
 

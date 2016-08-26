@@ -44,6 +44,9 @@ app.get('/rest/channel/chats/:channelId',  restChannelHandler.getChannelMessages
 // /rest/channel/create name and teamId are passed as post parameters.
 app.post('/rest/channel/create', restChannelHandler.createChannel); 
 
+// /rest/users/all
+app.get('/rest/users/all', restUserHandler.getAllUsers);
+
 app.listen(3000, function () {
   console.log('Slack Clone listening on port 3000!');
 });

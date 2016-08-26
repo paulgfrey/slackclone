@@ -1,15 +1,40 @@
 slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
+    var users = [];
+    var loadUsers = function () {
+        return $http.get('/rest/users/all/')
+            .then(function (response) {
+                users = response.data;
+                for(var i = 0; i < users.length; i++) {
+                    var user = users[i];
+                    var img = new Image();
+                    var goodImage = function(evt) {
+                        this.user.avatarImg = "images/user" + this.user.id + ".jpg";
+                    };
+                    var badImage = function() {
+                        this.user.avatarImg = "images/default.jpg";
+                    }
+                    img.onload = goodImage.bind( {user: user} );
+                    img.onerror = badImage.bind( {user: user} );
+                    img.src = "images/user" + user.id + ".jpg";
+                }
+            },
+            function (response) {
+                return 'HTTP error ' + response.statusText;
+            });
+    }
+    loadUsers();
+
     return {
         getUser: function (userId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/user/' + userId)
-                .then(function (response) {
-                    resolve(response.data);
-                },
-                function (response) {
-                    reject('HTTP error ' + response.statusText);
-                }
-                );
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    }
+                    );
             });
         },
         createUser: function (_name, _password, _email, _teamId) {
@@ -20,15 +45,15 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: JSON.stringify({ name: _name, password: _password, email: _email, teamId: _teamId })     
+                    data: JSON.stringify({ name: _name, password: _password, email: _email, teamId: _teamId })
                 }
                 $http(req)
-                .then(function(response) {
-                    resolve(response.data);
-                },
-                function (resposne) {
-                    reject('HTTP error ' + response.statusText);
-                });
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (resposne) {
+                        reject('HTTP error ' + response.statusText);
+                    });
             });
         },
         createChannel: function (_name, _teamId) {
@@ -39,15 +64,15 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: JSON.stringify({ name: _name, teamId: _teamId })     
+                    data: JSON.stringify({ name: _name, teamId: _teamId })
                 }
                 $http(req)
-                .then(function(response) {
-                    resolve(response.data);
-                },
-                function (resposne) {
-                    reject('HTTP error ' + response.statusText);
-                });
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (resposne) {
+                        reject('HTTP error ' + response.statusText);
+                    });
             });
         },
         getUserByLogin: function (_name, _password) {
@@ -58,41 +83,41 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    data: JSON.stringify({ name: _name, password: _password })     
+                    data: JSON.stringify({ name: _name, password: _password })
                 }
                 $http(req)
-                .then(function(response) {
-                    resolve(response.data);
-                },
-                function (resposne) {
-                    reject('HTTP error ' + response.statusText);
-                });
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (resposne) {
+                        reject('HTTP error ' + response.statusText);
+                    });
             });
         },
         getFirstChannel: function (teamId, userId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/team/channels/' + teamId + '/' + userId)
-                .then(function (response) {
-                    var channel = response.data[0];
-                    resolve(channel);
-                },
-                function(response) {
-                    reject('HTTP error ' + response.statusText);
-                });
+                    .then(function (response) {
+                        var channel = response.data[0];
+                        resolve(channel);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
             });
         },
         getFirstTeam: function (userId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/team/user/' + userId)
-                .then(function (response) {
-                    var team = response.data[0];
-                    resolve(team);
-                },
-                function(response) {
-                    reject('HTTP error ' + response.statusText);
-                });
+                    .then(function (response) {
+                        var team = response.data[0];
+                        resolve(team);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
             });
-        },     
+        },
         getTeams: function (userId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/teams/user/' + userId)
@@ -104,7 +129,7 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                         reject('HTTP error ' + response.statusText);
                     });
             });
-        }, 
+        },
         getAllTeams: function () {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/teams/all')
@@ -116,26 +141,26 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                         reject('HTTP error ' + response.statusText);
                     });
             });
-        }, 
-        getMsgs: function(channelId) {
+        },
+        getMsgs: function (channelId) {
             return new Promise((resolve, reject) => {
                 $http.get('/rest/channel/chats/' + channelId)
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });
+        },
+        getChannels: function (teamId, userId) {
+            return $http.get('/rest/team/channels/' + teamId + '/' + userId)
                 .then(function (response) {
-                    resolve(response.data);
+                    return response.data;
                 },
-                function(response) {
-                    reject('HTTP error ' + response.statusText);
+                function (response) {
+                    return 'HTTP error ' + response.statusText;
                 });
-            });
-        }, 
-        getChannels: function(teamId, userId) {
-            return $http.get('/rest/team/channels/'+ teamId + '/' + userId)
-            .then(function (response) {
-                return response.data;
-            },
-            function(response) {
-                return 'HTTP error ' + response.statusText;
-            });
             /*
             return new Promise((resolve, reject) => {
                 $http.get('/rest/team/channels/'+ teamId + '/' + userId)
@@ -147,6 +172,16 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                 });
             });
             */
+        },
+        reLoadAllUsers: function () {
+            loadUsers();
+        },
+        getCachedUser: function (userId) {
+            for (var i = 0; i < users.length; i++) {
+                if (users[i].id === userId) {
+                    return (users[i]);
+                }
+            }
         },
         postMsg: function (channelId, userId, _msg, callback) {
             var req = {
@@ -161,23 +196,17 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                 callback(msgId);
             });
         },
-        saveUserId: function(userId) {
+        saveUserId: function (userId) {
             var expireDate = new Date();
             expireDate.setDate(expireDate.getDate() + 1);
-            $cookies.put('userId', userId, {'expires': expireDate});
+            $cookies.put('userId', userId, { 'expires': expireDate });
         },
         removeSavedUserId: function () {
             $cookies.remove('userId');
         },
-        getSavedUserId: function() {
+        getSavedUserId: function () {
             return $cookies.get('userId');
             //return rtnId;            
-        },
-        checkImage(src, goodFunc, badFunc) {
-            var img = new Image();
-            img.onload = goodFunc;
-            img.onerror = badFunc;
-            img.src = src;
         }
     };
 });

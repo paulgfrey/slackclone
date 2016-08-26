@@ -79,3 +79,25 @@ function createTeamUser(db, userId, teamId) {
         });
     });
 }
+
+exports.getAllUsersDb = getAllUsersDb;
+function getAllUsersDb(db) {
+    return new Promise((resolve, reject) => {
+        var query = "SELECT * FROM USERS";
+        var users = [];
+        db.each(query,
+            function(err, row) {
+                var user = { id: row.ID, name: row.NAME, password: row.PASSWORD, email: row.EMAIL };
+                users.push(user);
+            },
+            function(err) {
+                if(err) {
+                    reject(err);
+                    throw err;
+                }
+                else {
+                    resolve(JSON.stringify(users));
+                }
+        });
+    });
+}

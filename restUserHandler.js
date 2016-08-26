@@ -75,3 +75,20 @@ function createUser(req, res) {
         res.send({error: err}); 
     });
 }
+
+exports.getAllUsers = getAllUsers;
+function getAllUsers(req, res) {
+    console.log('Getting all Users');
+
+    var conn = dbHandler.getDbConn();
+
+    userHandler.getAllUsersDb(conn)
+    .then(
+        (usersJSON) => {
+            res.send(usersJSON);
+        }
+    )
+    .catch(function(err) {
+        res.send({error: err}); 
+    });
+}
