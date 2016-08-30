@@ -12,7 +12,6 @@ function createDB() {
     } catch (ex) {
         dbexists = false;
     }
-
     var db = new sqlite3.Database(filename);
 
 	console.log("Creating slackclone.db if not existant");
