@@ -182,6 +182,8 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     return (users[i]);
                 }
             }
+            // No user found so this must be a new user.
+            this.reLoadAllUsers();
         },
         postMsg: function (channelId, userId, _msg, callback) {
             var req = {

@@ -24,7 +24,7 @@ slackCloneApp.controller('channelMsgsCtrl', function ($rootScope, $scope, $locat
           newMsg.avatarImg = user.avatarImg;
           $scope.messages.push(newMsg);
         }
-        //$scope.$apply();
+        $scope.$apply();
       });
   }
 
