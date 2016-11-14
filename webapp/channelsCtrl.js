@@ -15,7 +15,13 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
         $scope.channels = channels;
         for (var i = 0; i < channels.length; i++) {
           if (channels[i].id === channelId) {
+            // remove user from old channel
+            if($rootScope.channel !== undefined) {
+              service.removeUserFromChannel($rootScope.channel.id,
+                    $rootScope.user.id);
+            }
             $rootScope.channel = channels[i];
+            service.addUserToChannel($rootScope.channel.id, $rootScope.user.id);
             $scope.$emit('ChannelChanged');
             break;
           }
@@ -26,9 +32,15 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
   $scope.setCurrentTeam = function (team) {
     console.log(team);
     $rootScope.team = team;
+    if($rootScope.channel !== undefined) {
+      service.removeUserFromChannel($rootScope.channel.id,
+            $rootScope.user.id);
+    }
     service.getFirstChannel(team.id, $rootScope.user.id)
       .then((channel) => {
         $rootScope.channel = channel;
+        service.addUserToChannel($rootScope.channel.id,
+            $rootScope.user.id);
         $scope.updateChannels();
         $scope.$emit('ChannelChanged');
       });
@@ -106,14 +118,58 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
       });
   }
 
+  $scope.updateChannelsDisp = function() {
+    service.getChannelUsers().then((channelUsers) => {
+      if(! channelUsers || ! $scope.channels) {
+        return;
+      }
+      var channels = $scope.channels;
+      var changeFound = false;
+      for(var i = 0; i < channels.length; i++) {
+        var channelId = channels[i].id;
+        var total = 0;
+        if(channelUsers[channelId] != undefined) {
+          total = channelUsers[channelId].length;
+        }
+        if(! channels[i].total) {
+          channels[i]['total'] = total;
+          changeFound = true;
+        }
+        else {
+          if(channels[i].total !== total) {
+            changeFound = true;
+          }
+          channels[i].total = total;
+        }
+      }
+      if(changeFound) {
+        $timeout(function(){
+            $scope.$apply();
+        });
+      }
+    });
+  }
+
   if (!$rootScope.channelTimer) {
     $rootScope.channelTimer = function () {
       //Initialize the Timer to run every 1000 milliseconds i.e. one second.
       console.log('Initializing the Timer to run every second.');
       $scope.timer = $interval(function () {
         $scope.updateChannels();
-      }, 250);
+      }, 5000);
     };
     $rootScope.channelTimer();
   }
+
+  if (!$rootScope.channelUsersTimer) {
+    $rootScope.channelUsersTimer = function () {
+      //Initialize the Timer to run every 1000 milliseconds i.e. one second.
+      console.log('Initializing the Timer to run every second.');
+      $scope.timer = $interval(function () {
+        $scope.updateChannelsDisp();
+      }, 1000);
+    };
+    $rootScope.channelUsersTimer();
+  }
+
 });

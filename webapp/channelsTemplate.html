@@ -43,7 +43,7 @@
             <div class="pannel panel-primary">
                 <div class="panel-heading" id="ChannelListHeader">Channel List - {{channels.length}}</div>
                 <div class="panel-body" ng-class="isChannelSelected(channel)" ng-repeat="channel in channels" ng-click="setCurrentChannel(channel.teamId, user.id, channel.id)">
-                    {{channel.name}}
+                    {{channel.name}} - {{channel.total}} users
                 </div>
                 <form>
                     <div class="input-group">

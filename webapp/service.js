@@ -154,14 +154,6 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
             });
         },
         getChannels: function (teamId, userId) {
-            return $http.get('/rest/team/channels/' + teamId + '/' + userId)
-                .then(function (response) {
-                    return response.data;
-                },
-                function (response) {
-                    return 'HTTP error ' + response.statusText;
-                });
-            /*
             return new Promise((resolve, reject) => {
                 $http.get('/rest/team/channels/'+ teamId + '/' + userId)
                 .then(function (response) {
@@ -171,7 +163,6 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
                     reject('HTTP error ' + response.statusText);
                 });
             });
-            */
         },
         reLoadAllUsers: function () {
             loadUsers();
@@ -209,6 +200,50 @@ slackCloneApp.factory('service', function ($http, $rootScope, $cookies) {
         getSavedUserId: function () {
             return $cookies.get('userId');
             //return rtnId;            
+        },
+        getCurrentUsersByChannel: function(channelId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/users/' + channelId)
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });
+        },
+        getChannelUsers: function() {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/channels/users')
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });
+        },
+        addUserToChannel: function(channelId, userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/users/add/' + channelId + "/" + userId)
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });
+        },
+        removeUserFromChannel: function(channelId, userId) {
+            return new Promise((resolve, reject) => {
+                $http.get('/rest/users/remove/' + channelId + "/" + userId)
+                    .then(function (response) {
+                        resolve(response.data);
+                    },
+                    function (response) {
+                        reject('HTTP error ' + response.statusText);
+                    });
+            });        
         }
     };
 });

@@ -47,6 +47,18 @@ app.post('/rest/channel/create', restChannelHandler.createChannel);
 // /rest/users/all
 app.get('/rest/users/all', restUserHandler.getAllUsers);
 
+// /rest/users/<channelId>
+app.get('/rest/users/:channelId', restUserHandler.getCurrentUsersByChannel);
+
+// /rest/users/add/<channelId>/<userId>
+app.get('/rest/users/add/:channelId/:userId', restUserHandler.addUserToChannel);
+
+// /rest/users/remove/<channelId>/<userId>
+app.get('/rest/users/remove/:channelId/:userId', restUserHandler.removeUserFromChannel);
+
+// /rest/channels/users
+app.get('/rest/channels/users', restUserHandler.getChannelUsers);
+
 app.listen(3000, function () {
   console.log('Slack Clone listening on port 3000!');
 });

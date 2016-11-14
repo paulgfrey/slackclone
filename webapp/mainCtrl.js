@@ -50,6 +50,11 @@ slackCloneApp.controller('loginCtrl', function ($rootScope, $scope, $location, s
   console.log('loginCtrl');
   if ($rootScope.user) {
     $scope.name = $rootScope.user.name;
+    // This means we've been here before
+    if($rootScope.channel) {
+      service.removeUserFromChannel($rootScope.channel.id,
+              $rootScope.user.id);
+    }
   }
   if (service.getSavedUserId()) {
     $scope.remember = true;
