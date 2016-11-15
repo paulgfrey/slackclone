@@ -47,7 +47,6 @@ function getUserByNamePassword(db, name, password) {
 
 exports.createUser = createUser;
 function createUser(db, name, password, email) {
-    // TODO Need to return ID from DB.
     return new Promise((resolve, reject) => {
         var sql = "INSERT INTO USERS(NAME, PASSWORD, EMAIL) " +
                 "VALUES (?, ?, ?)";

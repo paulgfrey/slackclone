@@ -150,6 +150,28 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
     });
   }
 
+  window.onbeforeunload = function (event) {
+    if (typeof event == 'undefined') {
+      event = window.event;
+    }
+    if(event) {
+      if($rootScope.channel !== undefined) {
+        service.removeUserFromChannel($rootScope.channel.id,
+              $rootScope.user.id);
+      }
+    }
+    /*
+    var message = 'Are you sure you want to leave this page?';
+    if (typeof event == 'undefined') {
+      event = window.event;
+    }
+    if (event) {
+      event.returnValue = message;
+    }
+    return message;
+    */
+  }
+
   if (!$rootScope.channelTimer) {
     $rootScope.channelTimer = function () {
       //Initialize the Timer to run every 1000 milliseconds i.e. one second.
@@ -160,6 +182,14 @@ slackCloneApp.controller('channelsCtrl', function ($rootScope, $scope, $location
     };
     $rootScope.channelTimer();
   }
+
+  // Remove the user when they logout
+  $scope.$on('$locationChangeStart', function( event ) {
+    if($rootScope.channel !== undefined) {
+      service.removeUserFromChannel($rootScope.channel.id,
+            $rootScope.user.id);
+    }
+  });
 
   if (!$rootScope.channelUsersTimer) {
     $rootScope.channelUsersTimer = function () {

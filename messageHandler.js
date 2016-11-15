@@ -5,7 +5,6 @@ var sqlite3 = require('sqlite3');
  */
 exports.addChannelMessage = addChannelMessage;
 function addChannelMessage(db, channelId, userId, msg) {
-    // TODO Need to return ID from DB.
     return new Promise((resolve, reject) => {
         var sql = "INSERT INTO MESSAGES(CHANNELID, USERID, MSG) " +
                 "VALUES (?, ?, ?)";

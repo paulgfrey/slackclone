@@ -145,7 +145,7 @@ function addUserToChannel(req, res) {
             var users = JSON.parse(usersJSON);
             for(var i = 0; i < users.length; i++) {
                 if(users[i].id == userId) {
-                    console.log("Add user " + JSON.stringify(users[i]) + 
+                    console.log("Add user " + userId + 
                         " channel ID " + channelId);
                     if(channelUsers[channelId] == undefined) {
                         channelUsers[channelId] = new Array();
@@ -181,7 +181,7 @@ function removeUserFromChannel(req, res) {
         var users = channelUsers[channelId];
         for(var i = 0; i < users.length; i++) {
             if(users[i].id == userId) {
-                console.log("Remove user " + JSON.stringify(users[i]) + 
+                console.log("Remove user " + userId + 
                         " channel ID " + channelId);
                 channelUsers[channelId].splice(i, 1);
                 res.send("ok");
